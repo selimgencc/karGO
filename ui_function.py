@@ -1,36 +1,3 @@
-###########################################################################################
-###                        CODE:       WRITTEN BY: ANJAL.P AUGUST 11 2020               ###
-###                        PROJECT:    PELLIS Z1                                        ###
-###                        PURPOSE:    WINDOWS/LINUX/MAC OS FLAT MODERN UI              ###
-###                                    BASED ON QT DESIGNER, PySide2                    ###
-###                        USE CASE:   TEMPLATE FOR SOFTWARES                           ###
-###                        LICENCE:    MIT OPENSOURCE LICENCE                           ###
-###                                                                                     ###
-###                            CODE IS FREE TO USE AND MODIFY                           ###
-###########################################################################################
-
-###########################################################################################
-#                                     DOCUMENTATION                                       #
-#                                                                                         #
-#                                                                                         #
-#  Each line of the code described below is commented well, such as: the purpose of the   #
-#  code, its function, returns e.t.c as in certain caes: the alternatives to that solul-  #
-#  ution, other sources like included PDF document has also the working of the code.      #
-#  CSS stylesheet of the buttons are given seperatly in the CSS.txt in the parent folder  #
-###########################################################################################
-
-###########################################################################################
-#                                       CAUTION                                           #
-#  SINCE MOST OF THE WORK IS DONE IN THE QT DESIGNER, YOU WAY NOT SEE THE STYLESHEET HERE #
-#  FOR THAT PLEASE REFER THE CSS.txt FILE PROVIDED IN THIS SAME FILE.                     #
-#  ALSO AMNY OF THE SETTINGS IS PREDEFINED IN THE QT DESIGNER ITSELF, SO HERE IN THIS FUN-#
-#  CTION WHAY HAPPENS AFTER THIS I.E. WHEN THE USER CHANGES THE INPUT STATE, ONLY IS DELT #
-#  HERE, SO IF YOU WANT TO MODIFY THE FILE, PLEASE OPEN THE CORRESPONDING .ui FILE IN QT  #
-#  DESIGNER AND MADE THE MODIFICATION AND THENY COME BACK HERE TO ADD FUNCTIONALITY TO THE#
-#  CHANGES.                                                                               #
-########################################################################################### 
-
-
 from main import * #IMPORTING THE MAIN.PY FILE
 
 from about import *
@@ -188,17 +155,6 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("About > Home")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
-        elif buttonName=='bn_bug':
-            if self.ui.frame_bottom_west.width()==80 and index!=5:
-                self.ui.stackedWidget.setCurrentWidget(self.ui.page_bug)
-                self.ui.lab_tab.setText("Bug")
-                self.ui.frame_bug.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
-
-            elif self.ui.frame_bottom_west.width()==160 and index!=4:   # ABOUT PAGE STACKED WIDGET
-                self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_bug)
-                self.ui.lab_tab.setText("About > Bug")
-                self.ui.frame_bug.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
-
         elif buttonName=='bn_android':
             if self.ui.frame_bottom_west.width()==80  and index!=7:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_android)
@@ -235,42 +191,27 @@ class UIFunction(MainWindow):
         self.ui.lab_home_main_hed.setText("Profile")
         self.ui.lab_home_stat_hed.setText("Stat")
 
-        ######### PAGE_BUG ############## BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_bug
-        self.ui.bn_bug_start.clicked.connect(lambda: APFunction.addNumbers(self, self.ui.comboBox_bug.currentText(), True))  
 
         # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
         #ALONGWITH MOVING THE PROGRESS CHUNK FROM 0 TO 100%
 
         #########PAGE CLOUD #############
-        self.ui.bn_cloud_connect.clicked.connect(lambda: APFunction.cloudConnect(self))
         #self.ui.bn_cloud_clear.clicked.connect(lambda: self.dialogexec("Warning", "Do you want to save the file", "icons/1x/errorAsset 55.png", "Cancel", "Save"))
         self.ui.bn_cloud_clear.clicked.connect(lambda: APFunction.cloudClear(self))
 
         #########PAGE ANDROID WIDGET AND ITS STACKANDROID WIDGET PAGES
         self.ui.bn_android_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))
         self.ui.bn_android_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
-        self.ui.bn_android_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
-        self.ui.bn_android_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
         
         ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
         self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
 
-        self.ui.bn_android_contact_edit.clicked.connect(lambda: APFunction.editable(self))
 
         self.ui.bn_android_contact_save.clicked.connect(lambda: APFunction.saveContact(self))
 
-        #######ANDROID > PAGE GAMEPAD >>>>>>>>>>>>>>>>>>>
-        self.ui.textEdit_gamepad.setVerticalScrollBar(self.ui.vsb_gamepad)   # SETTING THE TEXT FILED AREA A SCROLL BAR
-        self.ui.textEdit_gamepad.setText("Type Here Something, or paste something here")
 
-        ######ANDROID > PAGE CLEAN >>>>>>>>>>>>>>>>>>>>>>
-        #NOTHING HERE
-        self.ui.horizontalSlider_2.valueChanged.connect(lambda: print("Slider: Horizondal: ", self.ui.horizontalSlider_2.value())) #CHECK WEATHER THE SLIDER IS MOVED OR NOT
-        self.ui.checkBox.stateChanged.connect(lambda: self.errorexec("Happy to Know you liked the UI", "icons/1x/smile2Asset 1.png", "Ok")) #WHEN THE CHECK BOX IS CHECKED IT ECECUTES THE ERROR BOX WITH MESSAGE.
-        self.ui.checkBox_2.stateChanged.connect(lambda: self.errorexec("Even More Happy to hear this", "icons/1x/smileAsset 1.png", "Ok"))
 
         ##########PAGE: ABOUT HOME #############
-        self.ui.text_about_home.setVerticalScrollBar(self.ui.vsb_about_home)
         self.ui.text_about_home.setText(aboutHome)
     ################################################################################################################################
 
@@ -292,15 +233,6 @@ class UIFunction(MainWindow):
             self.ui.lab_tab.setText("Android > GamePad")
             self.ui.frame_android_game.setStyleSheet("background:rgb(91,90,90)")
 
-        elif page == "page_clean":
-            self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_clean)
-            self.ui.lab_tab.setText("Android > Clean")
-            self.ui.frame_android_clean.setStyleSheet("background:rgb(91,90,90)")
-
-        elif page == "page_world":
-            self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_world)
-            self.ui.lab_tab.setText("Android > World")
-            self.ui.frame_android_world.setStyleSheet("background:rgb(91,90,90)")
 
         #ADD A ADDITIONAL ELIF STATEMNT WITH THE SIMILAR CODE UP ABOVE FOR YOUR NEW SUBMENU BUTTON IN THE ANDROID STACK PAGE.
     ##############################################################################################################
