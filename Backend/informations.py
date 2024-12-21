@@ -123,7 +123,7 @@ def listAllShipments():
         print("All Shipments:")
         for shipment in all_shipments:
             print(shipment)
-
+    print(" ") # Bir satır boşluk bırak
 
 # Yeni müşteri ekleme
 Customer.addCustomer(1, "Ahmet", "Yılmaz")
@@ -132,12 +132,12 @@ Customer.addCustomer(2, "Ayşe", "Kara")
 # Gönderi ekleme
 customer1 = Customer.customers_list[0]
 
-customer1.addShipment(101, "2024-12-10", "Delivered", 3)
+customer1.addShipment(101, "2024-12-10", "Not Delivered", 3)
 customer1.addShipment(102, "2024-12-12", "Not Delivered", 5)
-customer1.addShipment(103, "2024-12-14", "Delivered", 2)
+customer1.addShipment(103, "2024-12-14", "Not Delivered", 2)
 customer1.addShipment(104, "2024-12-15", "Delivered", 4)
 customer1.addShipment(105, "2024-12-16", "Not Delivered", 3)
-customer1.addShipment(106, "2024-12-17", "Delivered", 1)
+customer1.addShipment(106, "2024-12-17", "Not Delivered", 1)
 Customer.customers_list[0].addShipment(107, "2024-12-18", "Delivered", 2)
 
 customer2 = Customer.customers_list[1]
