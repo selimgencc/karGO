@@ -43,3 +43,7 @@ for shipment in all_shipments:
 
 # Kuyruk görüntüleniyor
 priority_queue.display()
+
+print("Zaman Karmaşıklığı Analizi:")
+print("Kargo ekleme işlemi: O(n logn)")
+print("Öncelikli kargo işleme: O(1)")
