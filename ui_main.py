@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
     QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
 
-from Backend.informations import all_shipments
+from Backend.informations import all_shipments,customers_list
 
 
 class Ui_MainWindow(object):
@@ -452,6 +452,7 @@ class Ui_MainWindow(object):
         self.listWidget_3.setObjectName(u"listWidget_3")
 
         self.verticalLayout_6.addWidget(self.listWidget_3)
+        self.listCustomersUI()
 
 
         self.horizontalLayout_19.addWidget(self.frame_home_stat)
@@ -1014,15 +1015,24 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
+    def listCustomersUI(self):
+        self.listWidget_3.clear()
+        if not customers_list:
+                print("nocustoemr")
+        else:
+                for custoemr in customers_list:
+                        self.listWidget_3.addItem(str(custoemr))
+
     def listAllShipmentsUI(self):
             self.listWidget_2.clear()
             if not all_shipments:
                     print("No shipments found.")
             else:
-                    print("All Shipments:")
+
                     for shipment in all_shipments:
-                            print(shipment)  # Konsola yazdırıyoruz
+                         # Konsola yazdırıyoruz
                             self.listWidget_2.addItem(str(shipment))
+
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))

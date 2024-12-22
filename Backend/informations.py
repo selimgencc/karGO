@@ -1,4 +1,5 @@
 all_shipments = []  # Bu liste tüm gönderileri tutar
+customers_list = []  # Global müşteri listesi
 
 # Gönderi (Shipment) sınıfı
 class Shipment:
@@ -66,7 +67,9 @@ class Stack:
 
 # Müşteri sınıfı
 class Customer:
-    customers_list = []  # Tüm müşterileri saklamak için bir sınıf değişkeni (array list)
+
+    def __str__(self):
+         return f"ID: {self.customerID}, Name: {self.name}, Surname: {self.surname}"
 
     def __init__(self, customerID, name, surname):
         self.customerID = customerID
@@ -78,22 +81,21 @@ class Customer:
     @classmethod
     def addCustomer(cls, customerID, name, surname):
         new_customer = cls(customerID, name, surname)
-        cls.customers_list.append(new_customer)
+        customers_list.append(new_customer)  # Global müşteri listesine ekleme
         print(
             f"New customer added: ID={new_customer.customerID}, Name={new_customer.name}, Surname={new_customer.surname}")
 
     @classmethod
     def listCustomers(cls):
-        if not cls.customers_list:
+        if not customers_list:
             print("No customers found.")
         else:
             print("Customer List:")
-            for customer in cls.customers_list:
+            for customer in customers_list:
                 print(f"ID={customer.customerID}, Name={customer.name}, Surname={customer.surname}")
 
     def addShipment(self, shipment_id, shipment_date, delivery_status, delivery_duration):
         shipment = Shipment(shipment_id, shipment_date, delivery_status, delivery_duration)
-
 
         # Global gönderi listesine ekleme
         all_shipments.append(shipment)
@@ -107,7 +109,7 @@ class Customer:
     def listAllShipments(self):
         print(f"All shipments for {self.name} {self.surname}:")
         self.shipment_history_list.display()  # Tüm gönderileri Linked List üzerinden listele
-        print(" ") # Bir satır boşluk bırak")
+        print(" ") # Bir satır boşluk bırak
 
     def listLastShipments(self):
         print(f"Last shipments for {self.name} {self.surname}:")
@@ -115,32 +117,24 @@ class Customer:
         print(" ") # Bir satır boşluk bırak
 
 
-# Tüm gönderileri listeleyen fonksiyon
-def listAllShipments():
-    if not all_shipments:
-        print("No shipments found.")
-    else:
-        print("All Shipments:")
-        for shipment in all_shipments:
-            print(shipment)
-    print(" ") # Bir satır boşluk bırak
-
 # Yeni müşteri ekleme
 Customer.addCustomer(1, "Ahmet", "Yılmaz")
 Customer.addCustomer(2, "Ayşe", "Kara")
+Customer.addCustomer(3, "mirza", "sincap")
+Customer.addCustomer(4, "mirza", "şakirson")
+Customer.addCustomer(5,"gözlüklü şirin","GENÇ")
 
 # Gönderi ekleme
-customer1 = Customer.customers_list[0]
-
+customer1 = customers_list[0]
 customer1.addShipment(101, "2024-12-10", "Not Delivered", 3)
 customer1.addShipment(102, "2024-12-12", "Not Delivered", 5)
 customer1.addShipment(103, "2024-12-14", "Not Delivered", 2)
 customer1.addShipment(104, "2024-12-15", "Delivered", 4)
 customer1.addShipment(105, "2024-12-16", "Not Delivered", 3)
 customer1.addShipment(106, "2024-12-17", "Not Delivered", 1)
-Customer.customers_list[0].addShipment(107, "2024-12-18", "Delivered", 2)
+customer1.addShipment(107, "2024-12-18", "Delivered", 2)
 
-customer2 = Customer.customers_list[1]
+customer2 = customers_list[1]
 customer2.addShipment(201, "2024-12-11", "Delivered", 2)
 customer2.addShipment(202, "2024-12-13", "Delivered", 3)
 customer2.addShipment(203, "2024-12-15", "Not Delivered", 4)
@@ -153,5 +147,3 @@ customer2.listAllShipments()
 customer1.listLastShipments()
 customer2.listLastShipments()
 
-# Tüm gönderileri listeleme
-listAllShipments()
