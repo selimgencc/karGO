@@ -59,10 +59,10 @@ class Stack:
     def get_last_shipments(self):
         if len(self.stack) == 0:  # Eğer yığın boşsa
             print("Error: No shipment history found!")
+            return []  # Boş bir liste döndür
         else:
             print("Last 5 shipments:")
-            for shipment in reversed(self.stack):  # Yığının en üstündeki gönderiden başlayarak listele
-                print(shipment)
+            return self.stack  # Yığındaki tüm öğeleri döndür
 
 
 # Müşteri sınıfı

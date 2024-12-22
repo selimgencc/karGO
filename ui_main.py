@@ -410,6 +410,9 @@ class Ui_MainWindow(object):
 
         self.listWidget_2 = QListWidget(self.frame_home_main)
         self.listWidget_2.setObjectName(u"listWidget_2")
+        # listWidget_2'yi oluşturduktan sonra, itemClicked sinyalini bağlıyoruz
+
+        self.listWidget_2.itemClicked.connect(self.on_item_clicked)
 
         self.verticalLayout_5.addWidget(self.listWidget_2)
 
@@ -1015,6 +1018,51 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
+
+    def on_item_clicked(self, item):
+            # Tıklanan item'ın metnini al ve kontrol et
+            item_text = item.text()
+            print(f"Tıklanan item metni: {item_text}")
+
+            # 'ID: ' kısmını ayıklayıp, sadece sayıyı almak için düzenleme yap
+            try:
+                    # 'ID: ' kısmını temizle ve sonra sayıyı al
+                    customer_id = int(item_text.split("ID: ")[1].split(",")[0].strip())
+                    print(f"Bulunan Müşteri ID'si: {customer_id}")
+            except ValueError as e:
+                    print(f"ID alınırken hata oluştu: {e}")
+                    return  # Eğer hata oluşursa işlem yapma
+
+            # Müşteri ID'sine göre müşteriyi bul
+            selected_customer = self.get_customer_by_id(customer_id)
+
+            if selected_customer:
+                    # Müşterinin stack'inden son 5 gönderiyi al
+                    last_shipments = selected_customer.shipment_history_stack.get_last_shipments()
+
+                    # listWidget_3'ü güncelle
+                    self.update_listWidget_3_from_shipments(last_shipments)
+            else:
+                    print("Müşteri bulunamadı!")
+
+    def get_customer_by_id(self, customer_id):
+            # Müşteri listesinde, verilen ID'ye sahip müşteriyi bul
+            for customer in customers_list:
+                    if customer.customerID == customer_id:
+                            return customer
+            return None
+
+    def update_listWidget_3_from_shipments(self, shipments):
+            # İlk olarak listWidget'ı temizle
+            self.listWidget_3.clear()
+
+            # Eğer gönderiler yoksa, "Kullanıcının kargosu bulunamadı" mesajını ekle
+            if shipments is None or len(shipments) == 0:
+                    self.listWidget_3.addItem("Kullanıcının kargosu bulunamadı")
+            else:
+                    # Eğer gönderiler varsa, her bir gönderiyi listeye ekle
+                    for shipment in shipments:
+                        self.listWidget_3.addItem(str(shipment))
 
     def listCustomersUI(self):
         self.listWidget_2.clear()
