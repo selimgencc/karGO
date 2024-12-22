@@ -1,17 +1,20 @@
+# informations.py
+from Backend.treeCities import find_delivery_time_to_city, root
+
 all_shipments = []  # Bu liste tüm gönderileri tutar
 customers_list = []  # Global müşteri listesi
 
 # Gönderi (Shipment) sınıfı
 class Shipment:
-    def __init__(self, shipment_id, shipment_date, delivery_status, delivery_duration):
+    def __init__(self, shipment_id, shipment_date, delivery_status, target_city):
         self.shipment_id = shipment_id  # Gönderi ID
         self.shipment_date = shipment_date  # Gönderi Tarihi
         self.delivery_status = delivery_status  # Teslim Durumu
-        self.delivery_duration = delivery_duration  # Teslim Süresi (gün cinsinden)
+        self.target_city = target_city  # Hedef şehir
+        self.delivery_duration = find_delivery_time_to_city(root, target_city)  # Teslim süresi (gün cinsinden)
 
     def __str__(self):
-        return f"ID: {self.shipment_id}, Date: {self.shipment_date}, Status: {self.delivery_status}, Duration: {self.delivery_duration} days"
-
+        return f"ID: {self.shipment_id}, Date: {self.shipment_date}, Status: {self.delivery_status}, Target City: {self.target_city}, Duration: {self.delivery_duration} days"
 
 # Linked List (Bağlı Liste) sınıfı
 class LinkedList:
@@ -39,7 +42,6 @@ class LinkedList:
             print(current.shipment)
             current = current.next
 
-
 # Yığın (Stack) sınıfı
 class Stack:
     def __init__(self):
@@ -63,7 +65,6 @@ class Stack:
         else:
             print("Last 5 shipments:")
             return self.stack  # Yığındaki tüm öğeleri döndür
-
 
 # Müşteri sınıfı
 class Customer:
@@ -94,8 +95,8 @@ class Customer:
             for customer in customers_list:
                 print(f"ID={customer.customerID}, Name={customer.name}, Surname={customer.surname}")
 
-    def addShipment(self, shipment_id, shipment_date, delivery_status, delivery_duration):
-        shipment = Shipment(shipment_id, shipment_date, delivery_status, delivery_duration)
+    def addShipment(self, shipment_id, shipment_date, delivery_status, target_city):
+        shipment = Shipment(shipment_id, shipment_date, delivery_status, target_city)
 
         # Global gönderi listesine ekleme
         all_shipments.append(shipment)
@@ -116,6 +117,13 @@ class Customer:
         self.shipment_history_stack.get_last_shipments()  # Son 5 gönderiyi Stack üzerinden listele
         print(" ") # Bir satır boşluk bırak
 
+# Örnek kullanımlar
+Customer.addCustomer(1, "Ahmet", "Yılmaz")
+Customer.addCustomer(2, "Ayşe", "Kara")
+
+customer1 = customers_list[0]
+customer1.addShipment(101, "2024-12-10", "Not Delivered", "Balıkesir")
+customer1.addShipment(102, "2024-12-12", "Delivered", "Tekirdağ")
 
 # Yeni müşteri ekleme
 Customer.addCustomer(1, "Ahmet", "Yılmaz")
@@ -126,29 +134,23 @@ Customer.addCustomer(5,"gözlüklü şirin","GENÇ")
 
 # Gönderi ekleme
 customer1 = customers_list[0]
-customer1.addShipment(101, "2024-12-10", "Not Delivered", 3)
-customer1.addShipment(102, "2024-12-12", "Not Delivered", 5)
-customer1.addShipment(103, "2024-12-14", "Not Delivered", 2)
-customer1.addShipment(104, "2024-12-15", "Delivered", 4)
-customer1.addShipment(105, "2024-12-16", "Not Delivered", 3)
-customer1.addShipment(106, "2024-12-17", "Not Delivered", 1)
-customer1.addShipment(107, "2024-12-18", "Delivered", 2)
-
+customer1.addShipment(101, "2024-12-10", "Not Delivered", "Eskişehir")
+customer1.addShipment(102, "2024-12-12", "Not Delivered", "Afyonkarahisar")
+customer1.addShipment(103, "2024-12-14", "Not Delivered", "Bolu")
+customer1.addShipment(104, "2024-12-15", "Delivered", "Karabük")
+customer1.addShipment(105, "2024-12-16", "Not Delivered", "Tekirdağ")
+customer1.addShipment(106, "2024-12-17", "Not Delivered", "Bilecik")
+customer1.addShipment(107, "2024-12-18", "Delivered", "Kırklareli")
 
 customer2 = customers_list[1]
-customer2.addShipment(201, "2024-12-11", "Delivered", 2)
-customer2.addShipment(202, "2024-12-13", "Delivered", 3)
-customer2.addShipment(203, "2024-12-15", "Not Delivered", 4)
+customer2.addShipment(201, "2024-12-11", "Delivered", "İzmir")
+customer2.addShipment(202, "2024-12-13", "Delivered", "Uşak")
+customer2.addShipment(203, "2024-12-15", "Not Delivered", "Edirne")
 
 customer3 = customers_list[2]
-customer3.addShipment(204, "2024-12-16", "Delivered", 4)
-customer3.addShipment(205, "2024-12-17", "Delivered", 3)
-customer3.addShipment(206, "2024-12-18", "Delivered", 1)
-# Müşterilerin tüm kargo gönderimlerini listeleme
+customer3.addShipment(204, "2024-12-16", "Delivered", "Manisa")
+customer3.addShipment(205, "2024-12-17", "Delivered", "Zonguldak")
+customer3.addShipment(206, "2024-12-18", "Delivered", "Kütahya")
+
 customer1.listAllShipments()
-customer2.listAllShipments()
-
-# Müşterilerin son 5 kargo gönderimini listeleme
 customer1.listLastShipments()
-customer2.listLastShipments()
-
