@@ -413,9 +413,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.listWidget_2)
 
-        self.listAllShipmentsUI()
-
-
 
         self.horizontalLayout_19.addWidget(self.frame_home_main)
 
@@ -428,7 +425,7 @@ class Ui_MainWindow(object):
 
         self.frame_home_stat = QFrame(self.page_home)
         self.frame_home_stat.setObjectName(u"frame_home_stat")
-        self.frame_home_stat.setMinimumSize(QSize(220, 0))
+        self.frame_home_stat.setMinimumSize(QSize(400, 0))#BURAYA DİKKAT
         self.frame_home_stat.setMaximumSize(QSize(220, 16777215))
         self.frame_home_stat.setFrameShape(QFrame.Shape.NoFrame)
         self.frame_home_stat.setFrameShadow(QFrame.Shadow.Plain)
@@ -452,7 +449,6 @@ class Ui_MainWindow(object):
         self.listWidget_3.setObjectName(u"listWidget_3")
 
         self.verticalLayout_6.addWidget(self.listWidget_3)
-        self.listCustomersUI()
 
 
         self.horizontalLayout_19.addWidget(self.frame_home_stat)
@@ -539,7 +535,7 @@ class Ui_MainWindow(object):
         self.frame_2 = QFrame(self.page_cloud)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setEnabled(True)
-        self.frame_2.setMinimumSize(QSize(0, 235))
+        self.frame_2.setMinimumSize(QSize(0, 100))#DİKKAT
         self.frame_2.setMaximumSize(QSize(16777215, 235))
         font4 = QFont()
         font4.setFamilies([u"Segoe UI"])
@@ -625,6 +621,9 @@ class Ui_MainWindow(object):
         self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_2)
+
+        self.listWidget.setFixedSize(710, 300)
+
 
         self.stackedWidget.addWidget(self.page_cloud)
         self.page_android = QWidget()
@@ -1011,27 +1010,29 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_android.setCurrentIndex(1)
 
+        self.listCustomersUI()
+        self.listAllShipmentsUI()
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def listCustomersUI(self):
-        self.listWidget_3.clear()
+        self.listWidget_2.clear()
         if not customers_list:
                 print("nocustoemr")
         else:
                 for custoemr in customers_list:
-                        self.listWidget_3.addItem(str(custoemr))
+                        self.listWidget_2.addItem(str(custoemr))
 
     def listAllShipmentsUI(self):
-            self.listWidget_2.clear()
+            self.listWidget.clear()
             if not all_shipments:
                     print("No shipments found.")
             else:
 
                     for shipment in all_shipments:
                          # Konsola yazdırıyoruz
-                            self.listWidget_2.addItem(str(shipment))
+                            self.listWidget.addItem(str(shipment))
 
 
     def retranslateUi(self, MainWindow):

@@ -191,11 +191,11 @@ class UIFunction(MainWindow):
 
         ######### PAGE_HOME ############# BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_HOME
         self.ui.lab_home_main_hed.setText("Profile")
-        self.ui.lab_home_stat_hed.setText("Stat")
+        self.ui.lab_home_stat_hed.setText("Last Shipments")
 
 
         # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
-        #ALONGWITH MOVING THE PROGRESS CHUNK FROM 0 TO 100%
+        #ALONGWITH MOVING THE PROGKRESS CHUNK FROM 0 TO 100%
 
         #########PAGE CLOUD #############
         #self.ui.bn_cloud_clear.clicked.connect(lambda: self.dialogexec("Warning", "Do you want to save the file", "icons/1x/errorAsset 55.png", "Cancel", "Save"))

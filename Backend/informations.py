@@ -134,11 +134,16 @@ customer1.addShipment(105, "2024-12-16", "Not Delivered", 3)
 customer1.addShipment(106, "2024-12-17", "Not Delivered", 1)
 customer1.addShipment(107, "2024-12-18", "Delivered", 2)
 
+
 customer2 = customers_list[1]
 customer2.addShipment(201, "2024-12-11", "Delivered", 2)
 customer2.addShipment(202, "2024-12-13", "Delivered", 3)
 customer2.addShipment(203, "2024-12-15", "Not Delivered", 4)
 
+customer3 = customers_list[2]
+customer3.addShipment(204, "2024-12-16", "Delivered", 4)
+customer3.addShipment(205, "2024-12-17", "Delivered", 3)
+customer3.addShipment(206, "2024-12-18", "Delivered", 1)
 # Müşterilerin tüm kargo gönderimlerini listeleme
 customer1.listAllShipments()
 customer2.listAllShipments()
