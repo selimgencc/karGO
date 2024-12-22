@@ -413,6 +413,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.listWidget_2)
 
+        self.listAllShipmentsUI()
+
+
 
         self.horizontalLayout_19.addWidget(self.frame_home_main)
 
