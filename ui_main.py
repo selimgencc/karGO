@@ -20,6 +20,9 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
     QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
 
+from Backend.informations import all_shipments
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -1007,6 +1010,16 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
+
+    def listAllShipmentsUI(self):
+            self.listWidget_2.clear()
+            if not all_shipments:
+                    print("No shipments found.")
+            else:
+                    print("All Shipments:")
+                    for shipment in all_shipments:
+                            print(shipment)  # Konsola yazdırıyoruz
+                            self.listWidget_2.addItem(str(shipment))
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))

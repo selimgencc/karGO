@@ -1,7 +1,7 @@
 from main import * #IMPORTING THE MAIN.PY FILE
 
 from about import *
-
+from ui_main import Ui_MainWindow
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
 GLOBAL_TITLE_BAR = True #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
@@ -149,6 +149,7 @@ class UIFunction(MainWindow):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
                 self.ui.lab_tab.setText("Home")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST 
+                self.ui.listAllShipmentsUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=1:  # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
