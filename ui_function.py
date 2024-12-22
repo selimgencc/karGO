@@ -149,7 +149,7 @@ class UIFunction(MainWindow):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
                 self.ui.lab_tab.setText("Home")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST 
-                self.ui.listAllShipmentsUI()
+
                 self.ui.listCustomersUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=1:  # ABOUT PAGE STACKED WIDGET
@@ -163,6 +163,7 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("Android")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
                 UIFunction.androidStackPages(self, "page_contact")
+                self.ui.listAllShipmentsUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=3:   # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_android)

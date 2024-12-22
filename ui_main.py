@@ -1073,11 +1073,15 @@ class Ui_MainWindow(object):
                         self.listWidget_2.addItem(str(custoemr))
 
     def listAllShipmentsUI(self):
-            self.listWidget.clear()
-            if not all_shipments:
-                    print("No shipments found.")
-            else:
+        for shipment in all_shipments:
+            if shipment.delivery_status == "Delivered":
+                    shipment.delivery_duration = 0  # Teslim edilenlerin süresi 0 yapılır
+        all_shipments.sort(key=lambda x: (x.delivery_duration == 0, x.delivery_duration))
 
+        self.listWidget.clear()
+        if not all_shipments:
+                    print("No shipments found.")
+        else:
                     for shipment in all_shipments:
                          # Konsola yazdırıyoruz
                             self.listWidget.addItem(str(shipment))
