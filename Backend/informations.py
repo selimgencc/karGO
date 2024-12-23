@@ -2,6 +2,7 @@ all_shipments = []  # Bu liste tüm gönderileri tutar
 customers_list = []  # Global müşteri listesi
 
 from Backend.treeCities import find_delivery_time_to_city, root
+import random
 
 # Gönderi (Shipment) sınıfı
 class Shipment:
@@ -67,7 +68,6 @@ class Stack:
 
 # Müşteri sınıfı
 class Customer:
-
     def __str__(self):
          return f"ID: {self.customerID}, Name: {self.name}, Surname: {self.surname}"
 
@@ -79,11 +79,12 @@ class Customer:
         self.shipment_history_stack = Stack()  # Yığın (stack) kargo geçmişi
 
     @classmethod
-    def addCustomer(cls, customerID, name, surname):
+    def addCustomer(cls, name, surname):
+        # 4 haneli rastgele bir customerID oluştur
+        customerID = random.randint(1000, 9999)
         new_customer = cls(customerID, name, surname)
         customers_list.append(new_customer)  # Global müşteri listesine ekleme
-        print(
-            f"New customer added: ID={new_customer.customerID}, Name={new_customer.name}, Surname={new_customer.surname}")
+        print(f"New customer added: ID={new_customer.customerID}, Name={new_customer.name}, Surname={new_customer.surname}")
 
     @classmethod
     def listCustomers(cls):
@@ -94,7 +95,9 @@ class Customer:
             for customer in customers_list:
                 print(f"ID={customer.customerID}, Name={customer.name}, Surname={customer.surname}")
 
-    def addShipment(self, shipment_id, shipment_date, delivery_status, target_city):
+    def addShipment(self, shipment_date, delivery_status, target_city):
+        # 4 haneli rastgele bir shipment_id oluştur
+        shipment_id = random.randint(1000, 9999)
         shipment = Shipment(shipment_id, shipment_date, delivery_status, target_city)
 
         # Global gönderi listesine ekleme
@@ -118,31 +121,31 @@ class Customer:
 
 
 # Yeni müşteri ekleme
-Customer.addCustomer(1, "Ahmet", "Yılmaz")
-Customer.addCustomer(2, "Ayşe", "Kara")
-Customer.addCustomer(3, "mirza", "sincap")
-Customer.addCustomer(4, "mirza", "şakirson")
-Customer.addCustomer(5,"gözlüklü şirin","GENÇ")
+Customer.addCustomer("Ahmet", "Yılmaz")
+Customer.addCustomer("Ayşe", "Kara")
+Customer.addCustomer("Mirza", "Sincap")
+Customer.addCustomer("Mirza", "Şakirson")
+Customer.addCustomer("Gözlüklü Şirin", "GENÇ")
 
 # Gönderi ekleme
 customer1 = customers_list[0]
-customer1.addShipment(101, "2024-12-10", "Not Delivered", "Eskişehir")
-customer1.addShipment(102, "2024-12-12", "Not Delivered", "Afyonkarahisar")
-customer1.addShipment(103, "2024-12-14", "Not Delivered", "Bolu")
-customer1.addShipment(104, "2024-12-15", "Delivered", "Karabük")
-customer1.addShipment(105, "2024-12-16", "Not Delivered", "Tekirdağ")
-customer1.addShipment(106, "2024-12-17", "Not Delivered", "Bilecik")
-customer1.addShipment(107, "2024-12-18", "Delivered", "Kırklareli")
+customer1.addShipment("2024-12-10", "Not Delivered", "Eskişehir")
+customer1.addShipment("2024-12-12", "Not Delivered", "Afyonkarahisar")
+customer1.addShipment("2024-12-14", "Not Delivered", "Bolu")
+customer1.addShipment("2024-12-15", "Delivered", "Karabük")
+customer1.addShipment("2024-12-16", "Not Delivered", "Tekirdağ")
+customer1.addShipment("2024-12-17", "Not Delivered", "Bilecik")
+customer1.addShipment("2024-12-18", "Delivered", "Kırklareli")
 
 customer2 = customers_list[1]
-customer2.addShipment(201, "2024-12-11", "Delivered", "İzmir")
-customer2.addShipment(202, "2024-12-13", "Delivered", "Uşak")
-customer2.addShipment(203, "2024-12-15", "Not Delivered", "Edirne")
+customer2.addShipment("2024-12-11", "Delivered", "İzmir")
+customer2.addShipment("2024-12-13", "Delivered", "Uşak")
+customer2.addShipment("2024-12-15", "Not Delivered", "Edirne")
 
 customer3 = customers_list[2]
-customer3.addShipment(204, "2024-12-16", "Delivered", "Manisa")
-customer3.addShipment(205, "2024-12-17", "Delivered", "Zonguldak")
-customer3.addShipment(206, "2024-12-18", "Delivered", "Kütahya")
+customer3.addShipment("2024-12-16", "Delivered", "Manisa")
+customer3.addShipment("2024-12-17", "Delivered", "Zonguldak")
+customer3.addShipment("2024-12-18", "Delivered", "Kütahya")
 
 customer1.listAllShipments()
 customer1.listLastShipments()
