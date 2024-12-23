@@ -76,7 +76,8 @@ Katkıda bulunmak isterseniz, lütfen aşağıdaki adımları takip edin:
 4. Dallarınızı pushlayın: `git push origin feature/isim`
 5. Pull Request oluşturun.
 
-## Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyin.
+
+Bu projede https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template UI template'i kullanılmıștır
+
 
