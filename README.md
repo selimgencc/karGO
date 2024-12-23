@@ -1,173 +1,108 @@
-# Minimalistic Flat Modern GUI Template
-[![GitHub](https://img.shields.io/github/license/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=Github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/LICENSE) [![GitHub top language](https://img.shields.io/github/languages/top/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template) [![GitHub issues](https://img.shields.io/github/issues/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/issues)
+Online Kargo Takip Sistemi
 
-A **Free** to use, Beautiful, Feature Rich, Fully Customizable Flat Modern GUI Template Using **Pyside2** designed in **Qt Designer**, supported for Windows/Linux/Mac OS, Incorporating widgets like Buttons, Progress Bar, Custom Tabs, and many more.
+Bu proje, kullanıcı dostu bir kargo takip paneli oluşturmayı amaçlamaktadır. Karmaşık veri yapıları ve algoritmalar kullanılarak, müşteri ve kargo bilgilerini verimli bir şekilde yönetmek için geliştirilmiştir.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/homepage.png">
-</p>
+Özellikler
 
-Check below to see more Images of the GUI.
+Müşteri Yönetimi: Müşteri bilgileri ve gönderim geçmişi linked list yapısı ile yönetilir.
 
-## HIGHLIGHTS
+Kargo Önceliklendirme: Priority queue algoritması ile teslimat sürelerine göre önceliklendirme yapılır.
 
-* Flat Minimalistic Design.
-* Dual Tone Color Scheme.
-* Dedicated Menu Bar.
-* Dedicated About Page.
-* Toggle Menu Button.
-* Custom Top Bar With Custom Minimize, Maximize, Restore, and Close Buttons.
-* Custom Widgets:
-  * Push Buttons
-  * Progress Bar
-  * Radio Buttons
-  * Check Boxes
-  * Text Edit Field
-  * Horizontal and Vertical Sliders
-  * Horizontal and Vertical Scroll Bar
-  * Combo Box.
-  * Text Browser
-* Custom Dialog Box with customizable Heading, Message to Display, Buttons to Display.
-* Custom Error Box with customizable Heading, Message to Display, and Button.
+Kargo Rotalama: Tree veri yapısı kullanılarak optimal rotalar oluşturulur.
 
+Gönderim Geçmişi Sorgulama: Stack veri yapısı ile son gönderim geçmişine hızlı erişim sağlanır.
 
+Durum Sorgulama: Binary search ve quick sort algoritmaları ile kargo durumları sorgulanır ve sıralanır.
 
-## PREREQUISITES
+Gerekli Bileşenler
 
-* Intermediate Python User
+Backend: Python 3.10 veya üzeri.
 
-* Comfortable in coding Pyside2/PyQt5/PyQt4 or has been using any other Python GUI package(refer to Resource section).
+Frontend: Qt Designer kullanılarak geliştirilmiş bir kullanıcı arayüzü.
 
-* Install [PySide2](https://pypi.org/project/PySide2/), [Qt Designer](https://build-system.fman.io/qt-designer-download)
+Kurulum Talimatları
 
-* Comfortable in using Qt Designer.
+1. Python Kurulumu
 
-  If you are completely new to GUI in python, then I suggest you quickly head forward to the Resource section for help.
+Projeyi çalıştırmak için Python 3.10 veya üzeri bir sürümün sisteminizde kurulu olduğundan emin olun.
 
-## QUICKSTART
+Python'u indirmek için: Python Resmi Web Sitesi
 
-Clone/Fork the Repository to your PC, open the `/exe` folder and run the `main.exe` file to experience the GUI in a glance(don't forget that `icons` folder is required for main.exe to work.).
+2. Gerekli Kütüphanelerin Kurulumu
 
-* If you have installed the PySide2, then try running the `main.py` 
+Gerekli Python kütüphanelerini kurmak için aşağıdaki komutu çalıştırın:
 
-  ```basic
-  C:/User/home/minimalistic-flat-modern-ui>python3 main.py
-  ```
+pip install -r requirements.txt
 
-  from your favorite terminal. 
+3. Kodun Çalıştırılması
 
-* To modify the Main Window Design open the `ui_main.py` file in **Qt Designer**, make necessary modifications, and then the action of the widget can be coded in the `main.py` and `ui_function.py` files.
+Aşağıdaki adımları takip ederek projeyi çalıştırabilirsiniz:
 
-* To Modify the Dialog Box Design open the `ui_dialog.ui` file in Qt Designer, for coding related to Dialog Box, move to `class` `dialogUi` in `main.py`.The Same applies to the Error Box.
+main.py dosyasını çalıştırın:
 
-* All the Custom Stylesheet used in this Project is provided in the `Documentation.pdf` file. Use them where ever required.
+python main.py
 
-* Check the `images` folder to see the GUI Images.
+Uygulama arayüzü açıldığında, menüden gerekli işlemleri seçebilirsiniz.
 
-## LAYOUT
+Kullanım Kılavuzu
 
-The Layout of the GUI is made using Qt Designer, gives you easy access to the *widget name* used in this project so that you can modify the GUI to fit your purpose with ease.
+Müşteri Yönetimi
 
-*This below illustration only represents the superficial part of the GUI. Widget inside the Stacked pages listed in the image, is not displayed here. The full representation is given in the `Documentation.pdf` file.*
+Yeni bir müşteri eklemek için "Müşteri Ekle" bölümüne gidin.
 
+Mevcut bir müşterinin gönderim geçmişini görüntülemek için müşteri ID'sini girerek "Geçmiş Sorgula" seçeneğini kullanın.
 
+Kargo Önceliklendirme
 
-![Layout](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/layoutAsset%2097.png)
+Gönderi bilgilerini girerek yeni bir kargo ekleyin.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/layout_infoAsset%20100.png">
-</p>
+"Kargo İşle" seçeneği ile en öncelikli kargoyu işleme alın.
 
-## DOCUMENTATION
+Kargo Rotalama
 
-For Complete Documentation check the `Documentation.pdf`. Each python file is commented well for your reference.The Stylesheet used in this project is also provided in the pdf itself.
+Teslimat rotalarını görüntülemek için "Rota Göster" seçeneğini kullanın.
 
-## QUICK GLANCE
+Gönderim Geçmişi
 
-**Color Scheme**
+"Geçmiş Listele" seçeneği ile son gönderimlerinizi görüntüleyin.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/color%20scheme.png">
-</p>
+Durum Sorgulama
 
-**Fonts**
+Teslim edilen veya edilmeyen kargoları sorgulamak için "Durum Sorgula" seçeneğini kullanın.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/font%20schem.png">
-</p>
+Örnek Kod Parçacıkları
 
-**Home Page**
+Tree Veri Yapısı Örneği
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/homeDetailed.png">
-</p>
+class TreeNode:
+    def __init__(self, city_name, city_id):
+        self.city_name = city_name
+        self.city_id = city_id
+        self.children = []
 
-**Toggle About** 
+    def add_child(self, child):
+        self.children.append(child)
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about%20pageAsset%2096.png">
-</p>
+    def display(self, level=0):
+        print(" " * level + f"{self.city_name} ({self.city_id})")
+        for child in self.children:
+            child.display(level + 2)
 
-**Page Within a Page**
+Katkıda Bulunma
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/android.png">
-</p>
+Katkıda bulunmak isterseniz, lütfen aşağıdaki adımları takip edin:
 
-**Dialog Box and Error Box**
+Bu repoyu forklayın.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/dialogerro.png">
-</p>
+Yeni bir dal (branch) oluşturun: git checkout -b feature/isim
 
-**Widgets** 
+Değişikliklerinizi yapın ve commit edin: git commit -m 'Yeni özellik ekle'
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/buttons.png">
-</p>
+Dallarınızı pushlayın: git push origin feature/isim
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/widget%202.png">
-</p>
+Pull Request oluşturun.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/widget3.png">
-</p>
+Lisans
 
-**Stock Size and Full Screen**
+Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasını inceleyin.
 
-*Stock Size*
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about_home.PNG">
-</p>
-
-*Full Screen*
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about_full%20screen.PNG">
-</p>
-
-## RESOURCES
-
-* Python Library used: [Pyside2](https://pypi.org/project/PySide2/)
-
-* Qt Designer : [Download](https://build-system.fman.io/qt-designer-download)
-
-* Python Basic Pyside2 Programming:
-  * [Parwiz Forogh](https://www.youtube.com/watch?v=oQTxJrDRCxg&list=PL1FgJUcJJ03tiCC6a7sF8NKLBPY4jRjmS) PySide2 GUI Tutorial in his YouTube Channel: **One of the Best for Beginners**.
-  * GeekForGeek: best Guides for PySide2/PyQt5.
-
-  * Tutorial Point [PyQt Tutorials](https://www.tutorialspoint.com/pyqt/index.htm): Even though they are for the PyQt4, almost work with PySide2. 
-* Pyside2 Stylesheet Documentation: [Qt For Python](https://doc.qt.io/qtforpython/overviews/stylesheet-examples.html)
-
-## SUPPORT
-
-:smiley: Support my work by forking or downloading this project, check it out, and share the experience.
-
-:smiley: Support like this motivates me to do more creative, work for Open Source.
-
-:point_right: Check out my other Projects in the [My GitHub Profile](https://github.com/anjalp)
-
-* Hiding Files inside an Image: Project Image Steganography
-* Backup your PC and Android wirelessly using the Ultra Backup Software.
