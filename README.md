@@ -1,173 +1,100 @@
-# Minimalistic Flat Modern GUI Template
-[![GitHub](https://img.shields.io/github/license/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=Github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/LICENSE) [![GitHub top language](https://img.shields.io/github/languages/top/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template) [![GitHub issues](https://img.shields.io/github/issues/anjalp/Minimalistic-Flat-Modern-GUI-Template?logo=github)](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/issues)
+# Online Kargo Takip Sistemi
 
-A **Free** to use, Beautiful, Feature Rich, Fully Customizable Flat Modern GUI Template Using **Pyside2** designed in **Qt Designer**, supported for Windows/Linux/Mac OS, Incorporating widgets like Buttons, Progress Bar, Custom Tabs, and many more.
+Bu proje, kullanıcı dostu bir kargo takip paneli oluşturmayı amaçlamaktadır. Karmaşık veri yapıları ve algoritmalar kullanılarak, müşteri ve kargo bilgilerini verimli bir şekilde yönetmek için geliştirilmiştir.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/homepage.png">
-</p>
+## Özellikler
 
-Check below to see more Images of the GUI.
+- **Müşteri Yönetimi**: Müşteri bilgileri ve gönderim geçmişi linked list yapısı ile yönetilir.
+- **Kargo Önceliklendirme**: Priority queue algoritması ile teslimat sürelerine göre önceliklendirme yapılır.
+- **Kargo Rotalama**: Tree veri yapısı kullanılarak optimal rotalar oluşturulur.
+- **Gönderim Geçmişi Sorgulama**: Stack veri yapısı ile son gönderim geçmişine hızlı erişim sağlanır.
+- **Durum Sorgulama**: Binary search ve quick sort algoritmaları ile kargo durumları sorgulanır ve sıralanır.
 
-## HIGHLIGHTS
+## Gerekli Bileşenler
 
-* Flat Minimalistic Design.
-* Dual Tone Color Scheme.
-* Dedicated Menu Bar.
-* Dedicated About Page.
-* Toggle Menu Button.
-* Custom Top Bar With Custom Minimize, Maximize, Restore, and Close Buttons.
-* Custom Widgets:
-  * Push Buttons
-  * Progress Bar
-  * Radio Buttons
-  * Check Boxes
-  * Text Edit Field
-  * Horizontal and Vertical Sliders
-  * Horizontal and Vertical Scroll Bar
-  * Combo Box.
-  * Text Browser
-* Custom Dialog Box with customizable Heading, Message to Display, Buttons to Display.
-* Custom Error Box with customizable Heading, Message to Display, and Button.
+1. **Backend**: Python 3.10 veya üzeri.
+2. **Frontend**: Qt Designer kullanılarak geliştirilmiş bir kullanıcı arayüzü.
 
+## Kurulum Talimatları
 
+### 1. Python Kurulumu
 
-## PREREQUISITES
+Projeyi çalıştırmak için Python 3.10 veya üzeri bir sürümün sisteminizde kurulu olduğundan emin olun.
 
-* Intermediate Python User
+- Python'u indirmek için: [Python Resmi Web Sitesi](https://www.python.org)
 
-* Comfortable in coding Pyside2/PyQt5/PyQt4 or has been using any other Python GUI package(refer to Resource section).
+### 2. Gerekli Kütüphanelerin Kurulumu
 
-* Install [PySide2](https://pypi.org/project/PySide2/), [Qt Designer](https://build-system.fman.io/qt-designer-download)
+Gerekli Python kütüphanelerini kurmak için aşağıdaki komutu çalıştırın:
 
-* Comfortable in using Qt Designer.
+```bash
+pip install -r requirements.txt
+```
 
-  If you are completely new to GUI in python, then I suggest you quickly head forward to the Resource section for help.
+### 3. Kodun Çalıştırılması
 
-## QUICKSTART
+Aşağıdaki adımları takip ederek projeyi çalıştırabilirsiniz:
 
-Clone/Fork the Repository to your PC, open the `/exe` folder and run the `main.exe` file to experience the GUI in a glance(don't forget that `icons` folder is required for main.exe to work.).
+1. `main.py` dosyasını çalıştırın:
+   ```bash
+   python main.py
+   ```
+2. Uygulama arayüzü açıldığında, menüden gerekli işlemleri seçebilirsiniz.
 
-* If you have installed the PySide2, then try running the `main.py` 
+## Kullanım Kılavuzu
 
-  ```basic
-  C:/User/home/minimalistic-flat-modern-ui>python3 main.py
-  ```
+### Müşteri Yönetimi
 
-  from your favorite terminal. 
+- Yeni bir müşteri eklemek için "Müşteri Ekle" bölümüne gidin.
+- Mevcut bir müşterinin gönderim geçmişini görüntülemek için müşteri ID'sini girerek "Geçmiş Sorgula" seçeneğini kullanın.
 
-* To modify the Main Window Design open the `ui_main.py` file in **Qt Designer**, make necessary modifications, and then the action of the widget can be coded in the `main.py` and `ui_function.py` files.
+### Kargo Önceliklendirme
 
-* To Modify the Dialog Box Design open the `ui_dialog.ui` file in Qt Designer, for coding related to Dialog Box, move to `class` `dialogUi` in `main.py`.The Same applies to the Error Box.
+- Gönderi bilgilerini girerek yeni bir kargo ekleyin.
+- "Kargo İşle" seçeneği ile en öncelikli kargoyu işleme alın.
 
-* All the Custom Stylesheet used in this Project is provided in the `Documentation.pdf` file. Use them where ever required.
+### Kargo Rotalama
 
-* Check the `images` folder to see the GUI Images.
+- Teslimat rotalarını görüntülemek için "Rota Göster" seçeneğini kullanın.
 
-## LAYOUT
+### Gönderim Geçmişi
 
-The Layout of the GUI is made using Qt Designer, gives you easy access to the *widget name* used in this project so that you can modify the GUI to fit your purpose with ease.
+- "Geçmiş Listele" seçeneği ile son gönderimlerinizi görüntüleyin.
 
-*This below illustration only represents the superficial part of the GUI. Widget inside the Stacked pages listed in the image, is not displayed here. The full representation is given in the `Documentation.pdf` file.*
+### Durum Sorgulama
 
+- Teslim edilen veya edilmeyen kargoları sorgulamak için "Durum Sorgula" seçeneğini kullanın.
 
+## Örnek Kod Parçacıkları
 
-![Layout](https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/layoutAsset%2097.png)
+### Tree Veri Yapısı Örneği
+```python
+class TreeNode:
+    def __init__(self, city_name, city_id):
+        self.city_name = city_name
+        self.city_id = city_id
+        self.children = []
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/layout_infoAsset%20100.png">
-</p>
+    def add_child(self, child):
+        self.children.append(child)
 
-## DOCUMENTATION
+    def display(self, level=0):
+        print(" " * level + f"{self.city_name} ({self.city_id})")
+        for child in self.children:
+            child.display(level + 2)
+```
 
-For Complete Documentation check the `Documentation.pdf`. Each python file is commented well for your reference.The Stylesheet used in this project is also provided in the pdf itself.
+## Katkıda Bulunma
 
-## QUICK GLANCE
+Katkıda bulunmak isterseniz, lütfen aşağıdaki adımları takip edin:
 
-**Color Scheme**
+1. Bu repoyu forklayın.
+2. Yeni bir dal (branch) oluşturun: `git checkout -b feature/isim`
+3. Değişikliklerinizi yapın ve commit edin: `git commit -m 'Yeni özellik ekle'`
+4. Dallarınızı pushlayın: `git push origin feature/isim`
+5. Pull Request oluşturun.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/color%20scheme.png">
-</p>
+## Lisans
 
-**Fonts**
+Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyin.
 
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/font%20schem.png">
-</p>
-
-**Home Page**
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/homeDetailed.png">
-</p>
-
-**Toggle About** 
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about%20pageAsset%2096.png">
-</p>
-
-**Page Within a Page**
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/android.png">
-</p>
-
-**Dialog Box and Error Box**
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/dialogerro.png">
-</p>
-
-**Widgets** 
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/buttons.png">
-</p>
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/widget%202.png">
-</p>
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/widget3.png">
-</p>
-
-**Stock Size and Full Screen**
-
-*Stock Size*
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about_home.PNG">
-</p>
-
-*Full Screen*
-
-<p align="center">
-  <img src="https://github.com/anjalp/Minimalistic-Flat-Modern-GUI-Template/blob/master/images/about_full%20screen.PNG">
-</p>
-
-## RESOURCES
-
-* Python Library used: [Pyside2](https://pypi.org/project/PySide2/)
-
-* Qt Designer : [Download](https://build-system.fman.io/qt-designer-download)
-
-* Python Basic Pyside2 Programming:
-  * [Parwiz Forogh](https://www.youtube.com/watch?v=oQTxJrDRCxg&list=PL1FgJUcJJ03tiCC6a7sF8NKLBPY4jRjmS) PySide2 GUI Tutorial in his YouTube Channel: **One of the Best for Beginners**.
-  * GeekForGeek: best Guides for PySide2/PyQt5.
-
-  * Tutorial Point [PyQt Tutorials](https://www.tutorialspoint.com/pyqt/index.htm): Even though they are for the PyQt4, almost work with PySide2. 
-* Pyside2 Stylesheet Documentation: [Qt For Python](https://doc.qt.io/qtforpython/overviews/stylesheet-examples.html)
-
-## SUPPORT
-
-:smiley: Support my work by forking or downloading this project, check it out, and share the experience.
-
-:smiley: Support like this motivates me to do more creative, work for Open Source.
-
-:point_right: Check out my other Projects in the [My GitHub Profile](https://github.com/anjalp)
-
-* Hiding Files inside an Image: Project Image Steganography
-* Backup your PC and Android wirelessly using the Ultra Backup Software.
