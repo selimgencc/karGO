@@ -206,8 +206,6 @@ class UIFunction(MainWindow):
         self.ui.bn_android_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))
         self.ui.bn_android_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
         
-        ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
-        self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
 
 
         self.ui.bn_android_contact_save.clicked.connect(lambda: APFunction.saveContact(self))
@@ -287,7 +285,6 @@ class APFunction():
         self.ui.bn_android_contact_save.setEnabled(True)
         self.ui.bn_android_contact_edit.setEnabled(False)
         self.ui.bn_android_contact_share.setEnabled(False)
-        self.ui.bn_android_contact_delete.setEnabled(False)
 
 #-----> FUNCTION TO SAVE THE MODOFOED TEXT FIELD
     def saveContact(self):
@@ -300,5 +297,4 @@ class APFunction():
         self.ui.bn_android_contact_save.setEnabled(False)
         self.ui.bn_android_contact_edit.setEnabled(True)
         self.ui.bn_android_contact_share.setEnabled(True)
-        self.ui.bn_android_contact_delete.setEnabled(True)
 ###############################################################################################################################################################
