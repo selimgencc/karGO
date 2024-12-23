@@ -65,24 +65,6 @@ Aşağıdaki adımları takip ederek projeyi çalıştırabilirsiniz:
 
 - Teslim edilen veya edilmeyen kargoları sorgulamak için "Durum Sorgula" seçeneğini kullanın.
 
-## Örnek Kod Parçacıkları
-
-### Tree Veri Yapısı Örneği
-```python
-class TreeNode:
-    def __init__(self, city_name, city_id):
-        self.city_name = city_name
-        self.city_id = city_id
-        self.children = []
-
-    def add_child(self, child):
-        self.children.append(child)
-
-    def display(self, level=0):
-        print(" " * level + f"{self.city_name} ({self.city_id})")
-        for child in self.children:
-            child.display(level + 2)
-```
 
 ## Katkıda Bulunma
 
