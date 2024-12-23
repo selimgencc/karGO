@@ -1072,6 +1072,8 @@ class Ui_MainWindow(object):
         self.pushButton_2 = QPushButton(self.frame_textbar)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setMaximumSize(QSize(100, 16777215))
+        self.pushButton_2.clicked.connect(self.handle_button_click)
+
         palette7 = QPalette()
         palette7.setBrush(QPalette.Active, QPalette.WindowText, brush)
         palette7.setBrush(QPalette.Active, QPalette.Button, brush3)
@@ -1195,6 +1197,33 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
+    def handle_button_click(self):
+            try:
+                    customer_id = int(self.lineEdit.text())  # lineEdit'den alınan metni int'e çevir
+                    self.print_shipments_by_customer_id(customer_id)  # Fonksiyona gönder
+            except ValueError:
+                    print("Error: Please enter a valid integer for Customer ID.")
+
+    def print_shipments_by_customer_id(self, customer_id):
+            """
+            Belirli bir müşteri ID'sine ait gönderi geçmişini listWidget_4'e ekler.
+            :param customer_id: Müşteri ID
+            :param list_widget: PyQt listWidget nesnesi
+            """
+            # Müşteri ID'sine göre müşteriyi arama
+            customer = next((c for c in customers_list if c.customerID == customer_id), None)
+
+            # Müşteri bulunduysa gönderilerini listWidget'e ekle
+            if customer:
+                    self.listWidget_4.clear()  # Önce listeyi temizle
+                    current = customer.shipment_history_list.head
+                    while current:
+                            shipment_str = str(current.shipment)
+                            self.listWidget_4.addItem(shipment_str)  # Gönderi bilgisini listWidget'e ekle
+                            current = current.next
+            else:
+                    self.listWidget_4.clear()
+                    self.listWidget_4.addItem(f"No customer found with ID={customer_id}.")
 
     def on_item_clicked(self, item):
             # Tıklanan item'ın metnini al ve kontrol et
@@ -1262,6 +1291,8 @@ class Ui_MainWindow(object):
                     for shipment in all_shipments:
                             # Konsola yazdırıyoruz
                             self.listWidget.addItem(str(shipment))
+
+
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
@@ -1331,4 +1362,5 @@ class Ui_MainWindow(object):
         self.frame_drag.setToolTip(QCoreApplication.translate("MainWindow", u"Drag", None))
 #endif // QT_CONFIG(tooltip)
     # retranslateUi
+
 

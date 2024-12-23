@@ -116,13 +116,6 @@ class Customer:
         self.shipment_history_stack.get_last_shipments()  # Son 5 gönderiyi Stack üzerinden listele
         print(" ") # Bir satır boşluk bırak
 
-# Örnek kullanımlar
-Customer.addCustomer(1, "Ahmet", "Yılmaz")
-Customer.addCustomer(2, "Ayşe", "Kara")
-
-customer1 = customers_list[0]
-customer1.addShipment(101, "2024-12-10", "Not Delivered", "Balıkesir")
-customer1.addShipment(102, "2024-12-12", "Delivered", "Tekirdağ")
 
 # Yeni müşteri ekleme
 Customer.addCustomer(1, "Ahmet", "Yılmaz")
