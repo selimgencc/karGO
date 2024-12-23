@@ -125,7 +125,7 @@ Customer.addCustomer("Ahmet", "Yılmaz")
 Customer.addCustomer("Ayşe", "Kara")
 Customer.addCustomer("Mirza", "Sincap")
 Customer.addCustomer("Mirza", "Şakirson")
-Customer.addCustomer("Gözlüklü Şirin", "GENÇ")
+Customer.addCustomer("Gözlüklü", "Şirin")
 
 # Gönderi ekleme
 customer1 = customers_list[0]

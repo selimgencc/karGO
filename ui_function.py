@@ -169,6 +169,7 @@ class UIFunction(MainWindow):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_android)
                 self.ui.lab_tab.setText("About > Android")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+                self.ui.listAllShipmentsUI()
 
         elif buttonName=='bn_cloud':
             if self.ui.frame_bottom_west.width()==80 and index!=6:

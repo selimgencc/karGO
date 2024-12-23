@@ -19,7 +19,9 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
                                QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
                                QStackedWidget, QTextEdit, QVBoxLayout, QWidget, QTextBrowser)
 
-from Backend.informations import all_shipments,customers_list
+from Backend.informations import all_shipments,customers_list,Customer
+from datetime import datetime
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -796,7 +798,7 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(5, 5, 5, 5)
         self.line_android_name = QLineEdit(self.frame_android_field)
-        self.line_android_name.setObjectName(u"line_android_name")
+        self.line_android_name.setObjectName(u"line_android_name")#İSİMSOYİSİM
         self.line_android_name.setEnabled(True)
         self.line_android_name.setMinimumSize(QSize(300, 25))
         self.line_android_name.setMaximumSize(QSize(400, 25))
@@ -817,7 +819,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.line_android_name, 1, 2, 1, 1)
 
-        self.line_android_adress = QLineEdit(self.frame_android_field)
+        self.line_android_adress = QLineEdit(self.frame_android_field)#ADRES
         self.line_android_adress.setObjectName(u"line_android_adress")
         self.line_android_adress.setEnabled(True)
         self.line_android_adress.setMinimumSize(QSize(300, 25))
@@ -853,9 +855,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label, 1, 0, 1, 2)
 
-        self.bn_android_contact_save = QPushButton(self.frame_android_field)
+        self.bn_android_contact_save = QPushButton(self.frame_android_field)#müşteri ekleme butonu
         self.bn_android_contact_save.setObjectName(u"bn_android_contact_save")
-        self.bn_android_contact_save.setEnabled(False)
+        self.bn_android_contact_save.setEnabled(True)
         self.bn_android_contact_save.setMaximumSize(QSize(250, 25))
         self.bn_android_contact_save.setFont(font4)
         self.bn_android_contact_save.setStyleSheet(u"QPushButton {\n"
@@ -870,7 +872,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:pressed {	\n"
 "	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(51,51,51);\n"
+"	background-color: rgb(90,90,90);\n"
 "}\n"
 "\n"
 "QPushButton:disabled {	\n"
@@ -878,6 +880,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(112,112,112);\n"
 "	background-color: rgb(112,112,112);\n"
 "}")
+        self.bn_android_contact_save.clicked.connect(self.load_button_click_1)
 
         self.gridLayout_4.addWidget(self.bn_android_contact_save, 2, 0, 1, 1)
 
@@ -901,7 +904,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label_4, 5, 0, 1, 1)
 
-        self.lineEdit_2 = QLineEdit(self.frame_android_field)
+        self.lineEdit_2 = QLineEdit(self.frame_android_field)#müşteri id
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setMaximumSize(QSize(400, 25))
         palette4 = QPalette()
@@ -989,8 +992,9 @@ class Ui_MainWindow(object):
         self.gridLayout_4.addWidget(self.lineEdit_2, 5, 2, 1, 1)
 
         self.pushButton = QPushButton(self.frame_android_field)
-        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setObjectName(u"pushButton")#kargo yükleme butonu
         self.pushButton.setMaximumSize(QSize(250, 25))
+
         palette5 = QPalette()
         palette5.setBrush(QPalette.Active, QPalette.WindowText, brush)
         brush14 = QBrush(QColor(112, 112, 112, 217))
@@ -1009,6 +1013,7 @@ class Ui_MainWindow(object):
         palette5.setBrush(QPalette.Disabled, QPalette.Window, brush1)
         self.pushButton.setPalette(palette5)
 
+        self.pushButton.clicked.connect(self.load_button_click_2)
         self.gridLayout_4.addWidget(self.pushButton, 6, 0, 1, 1)
 
 
@@ -1197,6 +1202,37 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
+    from datetime import datetime
+
+    def load_button_click_2(self):
+            print("Button clicked")  # Butona tıklandığında log yazdır
+
+            # lineEdit_2'den gelen müşteri ID'sini alıyoruz
+            customer_id = int(self.lineEdit_2.text())  # Müşteri ID'sini integer olarak alıyoruz
+            current_date = datetime.now().date()  # Yıl, ay, gün bilgisini alıyoruz (sadece tarih)
+            customer_adress = str(self.line_android_adress.text())  # Adresi alıyoruz
+
+            # customers_list içinde müşteri ID'sini arıyoruz
+            # Burada customers_list bir liste ve her bir müşteri bir nesne (örneğin Customer) olmalı
+            customer = next((c for c in customers_list if c.customerID == customer_id), None)
+
+            # Eğer müşteri bulunduysa, addShipment metodunu çağırıyoruz
+            if customer:
+                    Customer.addShipment(customer, current_date, "Not Delivered", customer_adress)
+                   
+            else:
+                    print(f"Müşteri ID'si {customer_id} bulunamadı.")
+
+    def load_button_click_1(self):
+            print("Button clicked")  # Butona tıklandığında log yazdır
+            full_name = str(self.line_android_name.text())
+            name_parts = full_name.split(maxsplit=1)
+
+            customer_name = name_parts[0]
+            customer_surname = name_parts[1] if len(name_parts) > 1 else ""
+
+            Customer.addCustomer(customer_name, customer_surname)
+
     def handle_button_click(self):
             try:
                     customer_id = int(self.lineEdit.text())  # lineEdit'den alınan metni int'e çevir
