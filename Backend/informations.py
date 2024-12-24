@@ -149,3 +149,61 @@ customer3.addShipment("2024-12-18", "Delivered", "Kütahya")
 
 customer1.listAllShipments()
 customer1.listLastShipments()
+
+class ShipmentSorter:
+    @staticmethod
+    def quicksort_shipments(shipments):
+        """
+        Quicksort algoritması ile kargo listesini kargo ID'sine göre küçükten büyüğe sıralar.
+
+        Args:
+            shipments (list): Sıralanacak kargo listesi.
+
+        Returns:
+            list: Sıralanmış kargo listesi.
+        """
+        if len(shipments) <= 1:
+            return shipments
+        pivot = shipments[0]
+        lesser = [shipment for shipment in shipments[1:] if shipment.shipment_id <= pivot.shipment_id]
+        greater = [shipment for shipment in shipments[1:] if shipment.shipment_id > pivot.shipment_id]
+        return ShipmentSorter.quicksort_shipments(lesser) + [pivot] + ShipmentSorter.quicksort_shipments(greater)
+
+    @staticmethod
+    def sort_shipments_by_id():
+        """
+        all_shipments listesini kargo ID'sine göre küçükten büyüğe sıralar.
+        """
+        global all_shipments
+        all_shipments = ShipmentSorter.quicksort_shipments(all_shipments)
+        
+
+    @staticmethod
+    def binary_search_by_id(target_id):
+        """
+        Binary search ile all_shipments listesinden kargo ID'sine göre arama yapar.
+
+        Args:
+            target_id (int): Aranacak kargo ID.
+
+        Returns:
+            Shipment: Bulunan kargo objesi veya None.
+        """
+        low = 0
+        high = len(all_shipments) - 1
+
+        while low <= high:
+            mid = (low + high) // 2
+            current_shipment = all_shipments[mid]
+
+            if current_shipment.shipment_id == target_id:
+                return current_shipment
+            elif current_shipment.shipment_id < target_id:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        return None  # Kargo bulunamadı
+
+# Örnek Kullanım
+ShipmentSorter.sort_shipments_by_id()

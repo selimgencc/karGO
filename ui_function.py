@@ -201,7 +201,6 @@ class UIFunction(MainWindow):
 
         #########PAGE CLOUD #############
         #self.ui.bn_cloud_clear.clicked.connect(lambda: self.dialogexec("Warning", "Do you want to save the file", "icons/1x/errorAsset 55.png", "Cancel", "Save"))
-        self.ui.bn_cloud_clear.clicked.connect(lambda: APFunction.cloudClear(self))
 
         #########PAGE ANDROID WIDGET AND ITS STACKANDROID WIDGET PAGES
         self.ui.bn_android_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))

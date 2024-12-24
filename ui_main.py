@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
 
 from Backend.informations import all_shipments,customers_list,Customer
 from datetime import datetime
+from Backend.informations import ShipmentSorter
 
 
 class Ui_MainWindow(object):
@@ -592,6 +593,7 @@ class Ui_MainWindow(object):
         self.bn_cloud_clear = QPushButton(self.frame_2)
         self.bn_cloud_clear.setObjectName(u"bn_cloud_clear")
         self.bn_cloud_clear.setEnabled(True)
+        self.bn_cloud_clear.clicked.connect(self.load_button_click_3)
         self.bn_cloud_clear.setMinimumSize(QSize(69, 25))
         self.bn_cloud_clear.setMaximumSize(QSize(69, 25))
         self.bn_cloud_clear.setFont(font4)
@@ -1202,8 +1204,21 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
-    from datetime import datetime
-
+    def load_button_click_3(self):
+        shipment_id = int(self.line_cloud_id.text())
+        ShipmentSorter.sort_shipments_by_id()
+        result = ShipmentSorter.binary_search_by_id(shipment_id)
+        
+        self.listWidget.clear()
+        
+        if result:
+                self.listWidget.addItem(f"Cargo ID: {result.shipment_id}")
+                self.listWidget.addItem(f"Shipment date: {result.shipment_date}")
+                self.listWidget.addItem(f"Target city: {result.target_city}")
+                self.listWidget.addItem(f"Delivery status: {result.delivery_status}")
+                self.listWidget.addItem(f"Estimated delivery duration: {result.delivery_duration} days")
+        else:
+                self.listWidget.addItem("Kargo bulunamadı!")  # Sonuç yoksa kullanıcıya bilgi ver
     def load_button_click_2(self):
             print("Button clicked")  # Butona tıklandığında log yazdır
 
