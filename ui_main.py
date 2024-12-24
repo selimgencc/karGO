@@ -806,18 +806,18 @@ class Ui_MainWindow(object):
         self.line_android_name.setMaximumSize(QSize(400, 25))
         self.line_android_name.setFont(font4)
         self.line_android_name.setStyleSheet(u"QLineEdit {\n"
-"	color:rgb(255,255,255);\n"
-"	border:2px solid rgb(51,51,51);\n"
-"	border-radius:4px;\n"
-"	background:rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"	color:rgb(255,255,255);\n"
-"	border:2px solid rgb(112,112,112);\n"
-"	border-radius:4px;\n"
-"	background:rgb(112,112,112);\n"
-"}")
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(51,51,51);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(51,51,51);\n"
+                                      "}\n"
+                                      "\n"
+                                      "QLineEdit:disabled {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(112,112,112);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(112,112,112);\n"
+                                      "}")
 
         self.gridLayout_4.addWidget(self.line_android_name, 1, 2, 1, 1)
 
@@ -1108,12 +1108,46 @@ class Ui_MainWindow(object):
         self.lineEdit = QLineEdit(self.frame_textbar)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setMaximumSize(QSize(400, 25))
+        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(51,51,51);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(51,51,51);\n"
+                                      "}\n"
+                                      "\n"
+                                      "QLineEdit:disabled {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(112,112,112);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(112,112,112);\n"
+                                      "}")
 
         self.horizontalLayout_26.addWidget(self.lineEdit)
 
         self.pushButton_2 = QPushButton(self.frame_textbar)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setMaximumSize(QSize(100, 16777215))
+        self.pushButton_2.setStyleSheet("""
+                    QPushButton {
+                        border: 2px solid rgb(51, 51, 51);
+                        border-radius: 5px;
+                        color: rgb(255, 255, 255);
+                        background-color: rgb(51, 51, 51);
+                    }
+                    QPushButton:hover {
+                        border: 2px solid rgb(0, 143, 150);
+                        background-color: rgb(0, 143, 150);
+                    }
+                    QPushButton:pressed {
+                        border: 2px solid rgb(0, 143, 150);
+                        background-color: rgb(90, 90, 90);
+                    }
+                    QPushButton:disabled {
+                        border-radius: 5px;
+                        border: 2px solid rgb(112, 112, 112);
+                        background-color: rgb(112, 112, 112);
+                    }
+                """)
         self.pushButton_2.clicked.connect(self.handle_button_click)
 
         palette7 = QPalette()
