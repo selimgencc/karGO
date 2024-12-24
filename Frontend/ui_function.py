@@ -1,7 +1,6 @@
 from main import * #IMPORTING THE MAIN.PY FILE
 
-from about import *
-
+from Frontend.ui_main import Ui_MainWindow
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
 GLOBAL_TITLE_BAR = True #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
@@ -19,7 +18,7 @@ class UIFunction(MainWindow):
         global init
         if init==False:
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-            self.ui.lab_tab.setText("Home")
+            self.ui.lab_tab.setText("")
             self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             init = True
     ################################################################################################
@@ -82,13 +81,13 @@ class UIFunction(MainWindow):
                 extend = maxWidth
                 #----> MAKE THE STACKED WIDGET PAGE TO ABOUT HOME PAGE
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
-                self.ui.lab_tab.setText("About > Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             else:
                 extend = minWidth
                 #-----> REVERT THE ABOUT HOME PAGE TO NORMAL HOME PAGE
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-                self.ui.lab_tab.setText("Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             #THIS ANIMATION IS RESPONSIBLE FOR THE TOODLE TO MOVE IN A SOME FIXED STATE.
             self.animation = QPropertyAnimation(self.ui.frame_bottom_west, b"minimumWidth")
@@ -147,35 +146,39 @@ class UIFunction(MainWindow):
         if buttonName=='bn_home':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-                self.ui.lab_tab.setText("Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST 
+
+                self.ui.listCustomersUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=1:  # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
-                self.ui.lab_tab.setText("About > Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
         elif buttonName=='bn_android':
             if self.ui.frame_bottom_west.width()==80  and index!=7:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_android)
-                self.ui.lab_tab.setText("Android")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
                 UIFunction.androidStackPages(self, "page_contact")
+                self.ui.listAllShipmentsUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=3:   # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_android)
-                self.ui.lab_tab.setText("About > Android")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
+                self.ui.listAllShipmentsUI()
 
         elif buttonName=='bn_cloud':
             if self.ui.frame_bottom_west.width()==80 and index!=6:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_cloud)
-                self.ui.lab_tab.setText("Cloud")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
             elif self.ui.frame_bottom_west.width()==160 and index!=2:   # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_cloud)
-                self.ui.lab_tab.setText("About > Cloud")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
         #ADD ANOTHER ELIF STATEMENT HERE FOR EXECTUITING A NEW MENU BUTTON STACK PAGE.
@@ -188,23 +191,20 @@ class UIFunction(MainWindow):
     def stackPage(self):
 
         ######### PAGE_HOME ############# BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_HOME
-        self.ui.lab_home_main_hed.setText("Profile")
-        self.ui.lab_home_stat_hed.setText("Stat")
+        self.ui.lab_home_main_hed.setText("Müşteriler")
+        self.ui.lab_home_stat_hed.setText("Son Siparişler")
 
 
         # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
-        #ALONGWITH MOVING THE PROGRESS CHUNK FROM 0 TO 100%
+        #ALONGWITH MOVING THE PROGKRESS CHUNK FROM 0 TO 100%
 
         #########PAGE CLOUD #############
         #self.ui.bn_cloud_clear.clicked.connect(lambda: self.dialogexec("Warning", "Do you want to save the file", "icons/1x/errorAsset 55.png", "Cancel", "Save"))
-        self.ui.bn_cloud_clear.clicked.connect(lambda: APFunction.cloudClear(self))
 
         #########PAGE ANDROID WIDGET AND ITS STACKANDROID WIDGET PAGES
         self.ui.bn_android_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))
         self.ui.bn_android_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
         
-        ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
-        self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
 
 
         self.ui.bn_android_contact_save.clicked.connect(lambda: APFunction.saveContact(self))
@@ -225,12 +225,12 @@ class UIFunction(MainWindow):
 
         if page == "page_contact":
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_contact)
-            self.ui.lab_tab.setText("Android > Contact")
+            self.ui.lab_tab.setText("")
             self.ui.frame_android_contact.setStyleSheet("background:rgb(91,90,90)")
 
         elif page == "page_game":
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_game)
-            self.ui.lab_tab.setText("Android > GamePad")
+            self.ui.lab_tab.setText("")
             self.ui.frame_android_game.setStyleSheet("background:rgb(91,90,90)")
 
 
@@ -284,18 +284,16 @@ class APFunction():
         self.ui.bn_android_contact_save.setEnabled(True)
         self.ui.bn_android_contact_edit.setEnabled(False)
         self.ui.bn_android_contact_share.setEnabled(False)
-        self.ui.bn_android_contact_delete.setEnabled(False)
 
 #-----> FUNCTION TO SAVE THE MODOFOED TEXT FIELD
     def saveContact(self):
-        self.ui.line_android_name.setEnabled(False)
-        self.ui.line_android_adress.setEnabled(False)
+        self.ui.line_android_name.setEnabled(True)
+        self.ui.line_android_adress.setEnabled(True)
         self.ui.line_android_org.setEnabled(False)
         self.ui.line_android_email.setEnabled(False)
         self.ui.line_android_ph.setEnabled(False)
 
-        self.ui.bn_android_contact_save.setEnabled(False)
+        self.ui.bn_android_contact_save.setEnabled(True)
         self.ui.bn_android_contact_edit.setEnabled(True)
         self.ui.bn_android_contact_share.setEnabled(True)
-        self.ui.bn_android_contact_delete.setEnabled(True)
 ###############################################################################################################################################################

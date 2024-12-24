@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'ui_mainnpnQFo.ui'
+## Form generated from reading UI file 'ui_main 11meUrbh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -16,9 +15,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QLineEdit, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
+                               QLabel, QLineEdit, QListWidget, QListWidgetItem,
+                               QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+                               QStackedWidget, QTextEdit, QVBoxLayout, QWidget, QTextBrowser)
+
+from Backend.informations import all_shipments,customers_list,Customer
+from datetime import datetime
+from Backend.informations import ShipmentSorter
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -407,6 +411,23 @@ class Ui_MainWindow(object):
 
         self.listWidget_2 = QListWidget(self.frame_home_main)
         self.listWidget_2.setObjectName(u"listWidget_2")
+        palette = QPalette()
+        brush = QBrush(QColor(255, 255, 255, 217))
+        brush.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        brush1 = QBrush(QColor(91, 90, 90, 255))
+        brush1.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.listWidget_2.setPalette(palette)
 
         self.verticalLayout_5.addWidget(self.listWidget_2)
 
@@ -422,7 +443,7 @@ class Ui_MainWindow(object):
 
         self.frame_home_stat = QFrame(self.page_home)
         self.frame_home_stat.setObjectName(u"frame_home_stat")
-        self.frame_home_stat.setMinimumSize(QSize(220, 0))
+        self.frame_home_stat.setMinimumSize(QSize(400, 0))
         self.frame_home_stat.setMaximumSize(QSize(220, 16777215))
         self.frame_home_stat.setFrameShape(QFrame.Shape.NoFrame)
         self.frame_home_stat.setFrameShadow(QFrame.Shadow.Plain)
@@ -444,6 +465,19 @@ class Ui_MainWindow(object):
 
         self.listWidget_3 = QListWidget(self.frame_home_stat)
         self.listWidget_3.setObjectName(u"listWidget_3")
+        palette1 = QPalette()
+        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.listWidget_3.setPalette(palette1)
 
         self.verticalLayout_6.addWidget(self.listWidget_3)
 
@@ -478,7 +512,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_28.setSpacing(0)
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
         self.horizontalLayout_28.setContentsMargins(5, 5, 0, 5)
-        self.text_about_home = QTextEdit(self.frame_about_home)
+        self.text_about_home = QTextBrowser(self.frame_about_home)
         self.text_about_home.setObjectName(u"text_about_home")
         self.text_about_home.setEnabled(True)
         font3 = QFont()
@@ -532,8 +566,8 @@ class Ui_MainWindow(object):
         self.frame_2 = QFrame(self.page_cloud)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setEnabled(True)
-        self.frame_2.setMinimumSize(QSize(0, 235))
-        self.frame_2.setMaximumSize(QSize(16777215, 235))
+        self.frame_2.setMinimumSize(QSize(0, 100))
+        self.frame_2.setMaximumSize(QSize(16777215, 300))
         font4 = QFont()
         font4.setFamilies([u"Segoe UI"])
         font4.setPointSize(12)
@@ -559,6 +593,7 @@ class Ui_MainWindow(object):
         self.bn_cloud_clear = QPushButton(self.frame_2)
         self.bn_cloud_clear.setObjectName(u"bn_cloud_clear")
         self.bn_cloud_clear.setEnabled(True)
+        self.bn_cloud_clear.clicked.connect(self.load_button_click_3)
         self.bn_cloud_clear.setMinimumSize(QSize(69, 25))
         self.bn_cloud_clear.setMaximumSize(QSize(69, 25))
         self.bn_cloud_clear.setFont(font4)
@@ -612,12 +647,22 @@ class Ui_MainWindow(object):
 
         self.listWidget = QListWidget(self.page_cloud)
         self.listWidget.setObjectName(u"listWidget")
+        self.listWidget.setMaximumSize(QSize(16777215, 300))
+        palette2 = QPalette()
+        palette2.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette2.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.listWidget.setPalette(palette2)
 
         self.verticalLayout_8.addWidget(self.listWidget)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.verticalLayout_8.addItem(self.verticalSpacer_2)
 
         self.stackedWidget.addWidget(self.page_cloud)
         self.page_android = QWidget()
@@ -742,6 +787,10 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setSpacing(5)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(5, 5, 5, 5)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_3, 1, 0, 1, 1)
+
         self.frame_android_field = QFrame(self.frame_android_bottom)
         self.frame_android_field.setObjectName(u"frame_android_field")
         self.frame_android_field.setFrameShape(QFrame.Shape.NoFrame)
@@ -750,72 +799,29 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setSpacing(5)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(5, 5, 5, 5)
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.line_android_name = QLineEdit(self.frame_android_field)
+        self.line_android_name.setObjectName(u"line_android_name")#İSİMSOYİSİM
+        self.line_android_name.setEnabled(True)
+        self.line_android_name.setMinimumSize(QSize(300, 25))
+        self.line_android_name.setMaximumSize(QSize(400, 25))
+        self.line_android_name.setFont(font4)
+        self.line_android_name.setStyleSheet(u"QLineEdit {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(51,51,51);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(51,51,51);\n"
+                                      "}\n"
+                                      "\n"
+                                      "QLineEdit:disabled {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(112,112,112);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(112,112,112);\n"
+                                      "}")
 
-        self.gridLayout_4.addItem(self.horizontalSpacer_6, 7, 5, 1, 1)
+        self.gridLayout_4.addWidget(self.line_android_name, 1, 2, 1, 1)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_4.addItem(self.horizontalSpacer_5, 4, 5, 1, 1)
-
-        self.bn_android_contact_delete = QPushButton(self.frame_android_field)
-        self.bn_android_contact_delete.setObjectName(u"bn_android_contact_delete")
-        self.bn_android_contact_delete.setMinimumSize(QSize(69, 25))
-        self.bn_android_contact_delete.setMaximumSize(QSize(69, 25))
-        self.bn_android_contact_delete.setFont(font4)
-        self.bn_android_contact_delete.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(112,0,0);\n"
-"	background-color: rgb(112,0,0);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	border: 2px solid rgb(112,0,0);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QPushButton:disabled {	\n"
-"	border-radius: 5px;	\n"
-"	border: 2px solid rgb(112,112,112);\n"
-"	background-color: rgb(112,112,112);\n"
-"}")
-
-        self.gridLayout_4.addWidget(self.bn_android_contact_delete, 5, 0, 1, 1)
-
-        self.bn_android_contact_save = QPushButton(self.frame_android_field)
-        self.bn_android_contact_save.setObjectName(u"bn_android_contact_save")
-        self.bn_android_contact_save.setEnabled(False)
-        self.bn_android_contact_save.setMinimumSize(QSize(69, 25))
-        self.bn_android_contact_save.setMaximumSize(QSize(69, 25))
-        self.bn_android_contact_save.setFont(font4)
-        self.bn_android_contact_save.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(51,51,51);\n"
-"	border-radius: 5px;	\n"
-"	color:rgb(255,255,255);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(0,143,150);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	border: 2px solid rgb(0,143,150);\n"
-"	background-color: rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QPushButton:disabled {	\n"
-"	border-radius: 5px;	\n"
-"	border: 2px solid rgb(112,112,112);\n"
-"	background-color: rgb(112,112,112);\n"
-"}")
-
-        self.gridLayout_4.addWidget(self.bn_android_contact_save, 5, 1, 1, 1)
-
-        self.line_android_adress = QLineEdit(self.frame_android_field)
+        self.line_android_adress = QLineEdit(self.frame_android_field)#ADRES
         self.line_android_adress.setObjectName(u"line_android_adress")
         self.line_android_adress.setEnabled(True)
         self.line_android_adress.setMinimumSize(QSize(300, 25))
@@ -835,33 +841,14 @@ class Ui_MainWindow(object):
 "	background:rgb(112,112,112);\n"
 "}")
 
-        self.gridLayout_4.addWidget(self.line_android_adress, 3, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.line_android_adress, 4, 2, 1, 1)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.label_5 = QLabel(self.frame_android_field)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setFont(font5)
+        self.label_5.setStyleSheet(u"color:rgb(255,255,255);")
 
-        self.gridLayout_4.addItem(self.verticalSpacer_4, 8, 2, 1, 1)
-
-        self.line_android_name = QLineEdit(self.frame_android_field)
-        self.line_android_name.setObjectName(u"line_android_name")
-        self.line_android_name.setEnabled(True)
-        self.line_android_name.setMinimumSize(QSize(300, 25))
-        self.line_android_name.setMaximumSize(QSize(400, 25))
-        self.line_android_name.setFont(font4)
-        self.line_android_name.setStyleSheet(u"QLineEdit {\n"
-"	color:rgb(255,255,255);\n"
-"	border:2px solid rgb(51,51,51);\n"
-"	border-radius:4px;\n"
-"	background:rgb(51,51,51);\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"	color:rgb(255,255,255);\n"
-"	border:2px solid rgb(112,112,112);\n"
-"	border-radius:4px;\n"
-"	background:rgb(112,112,112);\n"
-"}")
-
-        self.gridLayout_4.addWidget(self.line_android_name, 1, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.label_5, 4, 0, 1, 2)
 
         self.label = QLabel(self.frame_android_field)
         self.label.setObjectName(u"label")
@@ -870,19 +857,204 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label, 1, 0, 1, 2)
 
-        self.label_5 = QLabel(self.frame_android_field)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font5)
-        self.label_5.setStyleSheet(u"color:rgb(255,255,255);")
+        self.bn_android_contact_save = QPushButton(self.frame_android_field)#müşteri ekleme butonu
+        self.bn_android_contact_save.setObjectName(u"bn_android_contact_save")
+        self.bn_android_contact_save.setEnabled(True)
+        self.bn_android_contact_save.setMaximumSize(QSize(250, 25))
+        self.bn_android_contact_save.setFont(font4)
+        self.bn_android_contact_save.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(51,51,51);\n"
+"	border-radius: 5px;	\n"
+"	color:rgb(255,255,255);\n"
+"	background-color: rgb(51,51,51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(0,143,150);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 2px solid rgb(0,143,150);\n"
+"	background-color: rgb(90,90,90);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {	\n"
+"	border-radius: 5px;	\n"
+"	border: 2px solid rgb(112,112,112);\n"
+"	background-color: rgb(112,112,112);\n"
+"}")
+        self.bn_android_contact_save.clicked.connect(self.load_button_click_1)
 
-        self.gridLayout_4.addWidget(self.label_5, 3, 0, 1, 2)
+        self.gridLayout_4.addWidget(self.bn_android_contact_save, 2, 0, 1, 1)
+
+        self.label_4 = QLabel(self.frame_android_field)
+        self.label_4.setObjectName(u"label_4")
+        palette3 = QPalette()
+        brush2 = QBrush(QColor(251, 255, 255, 255))
+        brush2.setStyle(Qt.SolidPattern)
+        palette3.setBrush(QPalette.Active, QPalette.WindowText, brush2)
+        palette3.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.WindowText, brush2)
+        palette3.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette3.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.label_4.setPalette(palette3)
+
+        self.gridLayout_4.addWidget(self.label_4, 5, 0, 1, 1)
+
+        self.lineEdit_2 = QLineEdit(self.frame_android_field)#müşteri id
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setMaximumSize(QSize(400, 25))
+        self.lineEdit_2.setStyleSheet(u"QLineEdit {\n"
+                                               "	color:rgb(255,255,255);\n"
+                                               "	border:2px solid rgb(51,51,51);\n"
+                                               "	border-radius:4px;\n"
+                                               "	background:rgb(51,51,51);\n"
+                                               "}\n"
+                                               "\n"
+                                               "QLineEdit:disabled {\n"
+                                               "	color:rgb(255,255,255);\n"
+                                               "	border:2px solid rgb(112,112,112);\n"
+                                               "	border-radius:4px;\n"
+                                               "	background:rgb(112,112,112);\n"
+                                               "}")
+        palette4 = QPalette()
+        brush3 = QBrush(QColor(255, 255, 255, 255))
+        brush3.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.WindowText, brush3)
+        brush4 = QBrush(QColor(51, 51, 51, 255))
+        brush4.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Button, brush4)
+        brush5 = QBrush(QColor(76, 76, 76, 255))
+        brush5.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Light, brush5)
+        brush6 = QBrush(QColor(63, 63, 63, 255))
+        brush6.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Midlight, brush6)
+        brush7 = QBrush(QColor(25, 25, 25, 255))
+        brush7.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Dark, brush7)
+        brush8 = QBrush(QColor(34, 34, 34, 255))
+        brush8.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Mid, brush8)
+        palette4.setBrush(QPalette.Active, QPalette.Text, brush3)
+        palette4.setBrush(QPalette.Active, QPalette.BrightText, brush3)
+        palette4.setBrush(QPalette.Active, QPalette.ButtonText, brush3)
+        brush9 = QBrush(QColor(0, 0, 0, 255))
+        brush9.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.Base, brush9)
+        palette4.setBrush(QPalette.Active, QPalette.Window, brush4)
+        palette4.setBrush(QPalette.Active, QPalette.Shadow, brush9)
+        palette4.setBrush(QPalette.Active, QPalette.AlternateBase, brush7)
+        brush10 = QBrush(QColor(255, 255, 220, 255))
+        brush10.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Active, QPalette.ToolTipBase, brush10)
+        palette4.setBrush(QPalette.Active, QPalette.ToolTipText, brush9)
+        brush11 = QBrush(QColor(255, 255, 255, 127))
+        brush11.setStyle(Qt.SolidPattern)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Active, QPalette.PlaceholderText, brush11)
+#endif
+        palette4.setBrush(QPalette.Active, QPalette.Accent, brush9)
+        palette4.setBrush(QPalette.Inactive, QPalette.WindowText, brush3)
+        palette4.setBrush(QPalette.Inactive, QPalette.Button, brush4)
+        palette4.setBrush(QPalette.Inactive, QPalette.Light, brush5)
+        palette4.setBrush(QPalette.Inactive, QPalette.Midlight, brush6)
+        palette4.setBrush(QPalette.Inactive, QPalette.Dark, brush7)
+        palette4.setBrush(QPalette.Inactive, QPalette.Mid, brush8)
+        palette4.setBrush(QPalette.Inactive, QPalette.Text, brush3)
+        palette4.setBrush(QPalette.Inactive, QPalette.BrightText, brush3)
+        palette4.setBrush(QPalette.Inactive, QPalette.ButtonText, brush3)
+        palette4.setBrush(QPalette.Inactive, QPalette.Base, brush9)
+        palette4.setBrush(QPalette.Inactive, QPalette.Window, brush4)
+        palette4.setBrush(QPalette.Inactive, QPalette.Shadow, brush9)
+        palette4.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush7)
+        palette4.setBrush(QPalette.Inactive, QPalette.ToolTipBase, brush10)
+        palette4.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush9)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush11)
+#endif
+        palette4.setBrush(QPalette.Inactive, QPalette.Accent, brush9)
+        palette4.setBrush(QPalette.Disabled, QPalette.WindowText, brush7)
+        palette4.setBrush(QPalette.Disabled, QPalette.Button, brush4)
+        palette4.setBrush(QPalette.Disabled, QPalette.Light, brush5)
+        palette4.setBrush(QPalette.Disabled, QPalette.Midlight, brush6)
+        palette4.setBrush(QPalette.Disabled, QPalette.Dark, brush7)
+        palette4.setBrush(QPalette.Disabled, QPalette.Mid, brush8)
+        palette4.setBrush(QPalette.Disabled, QPalette.Text, brush7)
+        palette4.setBrush(QPalette.Disabled, QPalette.BrightText, brush3)
+        palette4.setBrush(QPalette.Disabled, QPalette.ButtonText, brush7)
+        palette4.setBrush(QPalette.Disabled, QPalette.Base, brush4)
+        palette4.setBrush(QPalette.Disabled, QPalette.Window, brush4)
+        palette4.setBrush(QPalette.Disabled, QPalette.Shadow, brush9)
+        palette4.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush4)
+        palette4.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush10)
+        palette4.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush9)
+        brush12 = QBrush(QColor(25, 25, 25, 127))
+        brush12.setStyle(Qt.SolidPattern)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush12)
+#endif
+        brush13 = QBrush(QColor(36, 36, 36, 255))
+        brush13.setStyle(Qt.SolidPattern)
+        palette4.setBrush(QPalette.Disabled, QPalette.Accent, brush13)
+        self.lineEdit_2.setPalette(palette4)
+
+        self.gridLayout_4.addWidget(self.lineEdit_2, 5, 2, 1, 1)
+
+        self.pushButton = QPushButton(self.frame_android_field)
+        self.pushButton.setObjectName(u"pushButton")#kargo yükleme butonu
+        self.pushButton.setMaximumSize(QSize(250, 25))
+
+        self.pushButton.setStyleSheet("""
+            QPushButton {
+                border: 2px solid rgb(51, 51, 51);
+                border-radius: 5px;
+                color: rgb(255, 255, 255);
+                background-color: rgb(51, 51, 51);
+            }
+            QPushButton:hover {
+                border: 2px solid rgb(0, 143, 150);
+                background-color: rgb(0, 143, 150);
+            }
+            QPushButton:pressed {
+                border: 2px solid rgb(0, 143, 150);
+                background-color: rgb(90, 90, 90);
+            }
+            QPushButton:disabled {
+                border-radius: 5px;
+                border: 2px solid rgb(112, 112, 112);
+                background-color: rgb(112, 112, 112);
+            }
+        """)
+
+        palette5 = QPalette()
+        palette5.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        brush14 = QBrush(QColor(112, 112, 112, 217))
+        brush14.setStyle(Qt.SolidPattern)
+        palette5.setBrush(QPalette.Active, QPalette.Button, brush14)
+        palette5.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette5.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette5.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette5.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette5.setBrush(QPalette.Inactive, QPalette.Button, brush14)
+        palette5.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette5.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette5.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette5.setBrush(QPalette.Disabled, QPalette.Button, brush14)
+        palette5.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette5.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.pushButton.setPalette(palette5)
+
+        self.pushButton.clicked.connect(self.load_button_click_2)
+        self.gridLayout_4.addWidget(self.pushButton, 6, 0, 1, 1)
 
 
         self.gridLayout_3.addWidget(self.frame_android_field, 0, 1, 2, 1)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_3.addItem(self.verticalSpacer_3, 1, 0, 1, 1)
 
 
         self.verticalLayout_10.addWidget(self.frame_android_bottom)
@@ -906,6 +1078,7 @@ class Ui_MainWindow(object):
 
         self.frame_textbar = QFrame(self.page_android_game)
         self.frame_textbar.setObjectName(u"frame_textbar")
+        self.frame_textbar.setMaximumSize(QSize(16777215, 400))
         self.frame_textbar.setStyleSheet(u"background:rgb(91,90,90);")
         self.frame_textbar.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_textbar.setFrameShadow(QFrame.Shadow.Raised)
@@ -913,19 +1086,107 @@ class Ui_MainWindow(object):
         self.horizontalLayout_26.setSpacing(0)
         self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
         self.horizontalLayout_26.setContentsMargins(5, 0, 0, 0)
-        self.textEdit_gamepad = QTextEdit(self.frame_textbar)
-        self.textEdit_gamepad.setObjectName(u"textEdit_gamepad")
-        self.textEdit_gamepad.setFont(font4)
-        self.textEdit_gamepad.setStyleSheet(u"color:rgb(255,255,255);")
-        self.textEdit_gamepad.setFrameShape(QFrame.Shape.NoFrame)
-        self.textEdit_gamepad.setFrameShadow(QFrame.Shadow.Plain)
-        self.textEdit_gamepad.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.textEdit_gamepad.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.label_3 = QLabel(self.frame_textbar)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setMaximumSize(QSize(75, 300))
+        palette6 = QPalette()
+        palette6.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette6.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette6.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette6.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette6.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette6.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette6.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette6.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette6.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette6.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette6.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.label_3.setPalette(palette6)
 
-        self.horizontalLayout_26.addWidget(self.textEdit_gamepad)
+        self.horizontalLayout_26.addWidget(self.label_3)
+
+        self.lineEdit = QLineEdit(self.frame_textbar)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setMaximumSize(QSize(400, 25))
+        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(51,51,51);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(51,51,51);\n"
+                                      "}\n"
+                                      "\n"
+                                      "QLineEdit:disabled {\n"
+                                      "	color:rgb(255,255,255);\n"
+                                      "	border:2px solid rgb(112,112,112);\n"
+                                      "	border-radius:4px;\n"
+                                      "	background:rgb(112,112,112);\n"
+                                      "}")
+
+        self.horizontalLayout_26.addWidget(self.lineEdit)
+
+        self.pushButton_2 = QPushButton(self.frame_textbar)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setMaximumSize(QSize(100, 16777215))
+        self.pushButton_2.setStyleSheet("""
+                    QPushButton {
+                        border: 2px solid rgb(51, 51, 51);
+                        border-radius: 5px;
+                        color: rgb(255, 255, 255);
+                        background-color: rgb(51, 51, 51);
+                    }
+                    QPushButton:hover {
+                        border: 2px solid rgb(0, 143, 150);
+                        background-color: rgb(0, 143, 150);
+                    }
+                    QPushButton:pressed {
+                        border: 2px solid rgb(0, 143, 150);
+                        background-color: rgb(90, 90, 90);
+                    }
+                    QPushButton:disabled {
+                        border-radius: 5px;
+                        border: 2px solid rgb(112, 112, 112);
+                        background-color: rgb(112, 112, 112);
+                    }
+                """)
+        self.pushButton_2.clicked.connect(self.handle_button_click)
+
+        palette7 = QPalette()
+        palette7.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette7.setBrush(QPalette.Active, QPalette.Button, brush3)
+        palette7.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette7.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette7.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette7.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette7.setBrush(QPalette.Inactive, QPalette.Button, brush3)
+        palette7.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette7.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette7.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette7.setBrush(QPalette.Disabled, QPalette.Button, brush3)
+        palette7.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette7.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.pushButton_2.setPalette(palette7)
+
+        self.horizontalLayout_26.addWidget(self.pushButton_2)
 
 
         self.verticalLayout_11.addWidget(self.frame_textbar)
+
+        self.listWidget_4 = QListWidget(self.page_android_game)
+        self.listWidget_4.setObjectName(u"listWidget_4")
+        self.listWidget_4.setMaximumSize(QSize(1000, 250))
+        palette8 = QPalette()
+        palette8.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette8.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette8.setBrush(QPalette.Active, QPalette.Window, brush1)
+        palette8.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette8.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette8.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        palette8.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette8.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette8.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        self.listWidget_4.setPalette(palette8)
+
+        self.verticalLayout_11.addWidget(self.listWidget_4)
 
         self.stackedWidget_android.addWidget(self.page_android_game)
 
@@ -1004,9 +1265,166 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_android.setCurrentIndex(1)
 
+        self.listWidget_2.itemClicked.connect(self.on_item_clicked)
+        self.listCustomersUI()
+        self.listAllShipmentsUI()
+
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
+    def load_button_click_3(self):
+        try:
+                # Kullanıcı girişini sayıya dönüştürmeyi dene
+                shipment_id = int(self.line_cloud_id.text())
+        except ValueError:
+                # Eğer boş veya geçersiz bir giriş varsa
+                shipment_id = None
+
+        if shipment_id is None:
+                # shipment_id boşsa, tüm gönderileri listele
+                self.listAllShipmentsUI()
+        else:
+                # shipment_id geçerliyse, işlem yap
+                ShipmentSorter.sort_shipments_by_id()
+                result = ShipmentSorter.binary_search_by_id(shipment_id)
+
+                self.listWidget.clear()
+                if result:
+                        self.listWidget.addItem(f"Cargo ID: {result.shipment_id}")
+                        self.listWidget.addItem(f"Shipment date: {result.shipment_date}")
+                        self.listWidget.addItem(f"Target city: {result.target_city}")
+                        self.listWidget.addItem(f"Delivery status: {result.delivery_status}")
+                        self.listWidget.addItem(f"Estimated delivery duration: {result.delivery_duration} days")
+                else:
+                        self.listWidget.addItem("Kargo bulunamadı!")  # Sonuç yoksa kullanıcıya bilgi ver
+
+    def load_button_click_2(self):
+            try:
+                    customer_id = int(self.lineEdit_2.text())  # Müşteri ID'sini integer olarak alıyoruz
+                    current_date = datetime.now().date()  # Yıl, ay, gün bilgisini alıyoruz (sadece tarih)
+                    customer_address = str(self.line_android_adress.text())  # Adresi alıyoruz
+
+                    # customers_list içinde müşteri ID'sini arıyoruz
+                    customer = next((c for c in customers_list if c.customerID == customer_id), None)
+
+                    if customer:
+                            customer.addShipment(current_date, "Not Delivered", customer_address)
+                            print(f"Müşteri {customer_id} için gönderim başarıyla eklendi.")
+                    else:
+                            print(f"Müşteri ID'si {customer_id} bulunamadı.")
+            except ValueError:
+                    print("Hata: Lütfen geçerli bir müşteri ID'si giriniz.")
+
+    def load_button_click_1(self):
+            try:
+                    print("Button clicked")  # Butona tıklandığında log yazdır
+                    full_name = str(self.line_android_name.text())
+                    name_parts = full_name.split(maxsplit=1)
+
+                    customer_name = name_parts[0]
+                    customer_surname = name_parts[1] if len(name_parts) > 1 else ""
+
+                    Customer.addCustomer(customer_name, customer_surname)
+            except Exception as e:
+                    print(f"An error occurred: {e}")
+
+    def handle_button_click(self):
+            try:
+                    customer_id = int(self.lineEdit.text())  # lineEdit'den alınan metni int'e çevir
+                    self.print_shipments_by_customer_id(customer_id)  # Fonksiyona gönder
+            except ValueError:
+                    print("Error: Please enter a valid integer for Customer ID.")
+
+    def print_shipments_by_customer_id(self, customer_id):
+            """
+            Belirli bir müşteri ID'sine ait gönderi geçmişini listWidget_4'e ekler.
+            :param customer_id: Müşteri ID
+            :param list_widget: PyQt listWidget nesnesi
+            """
+            # Müşteri ID'sine göre müşteriyi arama
+            customer = next((c for c in customers_list if c.customerID == customer_id), None)
+
+            # Müşteri bulunduysa gönderilerini listWidget'e ekle
+            if customer:
+                    self.listWidget_4.clear()  # Önce listeyi temizle
+                    current = customer.shipment_history_list.head
+                    while current:
+                            shipment_str = str(current.shipment)
+                            self.listWidget_4.addItem(shipment_str)  # Gönderi bilgisini listWidget'e ekle
+                            current = current.next
+            else:
+                    self.listWidget_4.clear()
+                    self.listWidget_4.addItem(f"No customer found with ID={customer_id}.")
+
+    def on_item_clicked(self, item):
+            # Tıklanan item'ın metnini al ve kontrol et
+            item_text = item.text()
+            print(f"Tıklanan item metni: {item_text}")
+
+            # 'ID: ' kısmını ayıklayıp, sadece sayıyı almak için düzenleme yap
+            try:
+                    # 'ID: ' kısmını temizle ve sonra sayıyı al
+                    customer_id = int(item_text.split("ID: ")[1].split(",")[0].strip())
+                    print(f"Bulunan Müşteri ID'si: {customer_id}")
+            except ValueError as e:
+                    print(f"ID alınırken hata oluştu: {e}")
+                    return  # Eğer hata oluşursa işlem yapma
+
+            # Müşteri ID'sine göre müşteriyi bul
+            selected_customer = self.get_customer_by_id(customer_id)
+
+            if selected_customer:
+                    # Müşterinin stack'inden son 5 gönderiyi al
+                    last_shipments = selected_customer.shipment_history_stack.get_last_shipments()
+
+                    # listWidget_3'ü güncelle
+                    self.update_listWidget_3_from_shipments(last_shipments)
+            else:
+                    print("Müşteri bulunamadı!")
+
+    def get_customer_by_id(self, customer_id):
+            # Müşteri listesinde, verilen ID'ye sahip müşteriyi bul
+            for customer in customers_list:
+                    if customer.customerID == customer_id:
+                            return customer
+            return None
+
+    def update_listWidget_3_from_shipments(self, shipments):
+            # İlk olarak listWidget'ı temizle
+            self.listWidget_3.clear()
+
+            # Eğer gönderiler yoksa, "Kullanıcının kargosu bulunamadı" mesajını ekle
+            if shipments is None or len(shipments) == 0:
+                    self.listWidget_3.addItem("Kullanıcının kargosu bulunamadı")
+            else:
+                    # Eğer gönderiler varsa, her bir gönderiyi listeye ekle
+                    for shipment in shipments:
+                            self.listWidget_3.addItem(str(shipment))
+
+    def listCustomersUI(self):
+            self.listWidget_2.clear()
+            if not customers_list:
+                    print("nocustoemr")
+            else:
+                    for custoemr in customers_list:
+                            self.listWidget_2.addItem(str(custoemr))
+
+    def listAllShipmentsUI(self):
+            for shipment in all_shipments:
+                    if shipment.delivery_status == "Delivered":
+                            shipment.delivery_duration = 0  # Teslim edilenlerin süresi 0 yapılır
+            all_shipments.sort(key=lambda x: (x.delivery_duration == 0, x.delivery_duration))
+
+            self.listWidget.clear()
+            if not all_shipments:
+                    print("No shipments found.")
+            else:
+                    for shipment in all_shipments:
+                            # Konsola yazdırıyoruz
+                            self.listWidget.addItem(str(shipment))
+
+
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
@@ -1025,15 +1443,15 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.bn_close.setText("")
 #if QT_CONFIG(tooltip)
-        self.bn_home.setToolTip(QCoreApplication.translate("MainWindow", u"Home", None))
+        self.bn_home.setToolTip(QCoreApplication.translate("MainWindow", u"", None))
 #endif // QT_CONFIG(tooltip)
         self.bn_home.setText("")
 #if QT_CONFIG(tooltip)
-        self.bn_cloud.setToolTip(QCoreApplication.translate("MainWindow", u"Cloud", None))
+        self.bn_cloud.setToolTip(QCoreApplication.translate("MainWindow", u"", None))
 #endif // QT_CONFIG(tooltip)
         self.bn_cloud.setProperty(u"M\u00fc\u015fteriler", "")
 #if QT_CONFIG(tooltip)
-        self.bn_android.setToolTip(QCoreApplication.translate("MainWindow", u"Android", None))
+        self.bn_android.setToolTip(QCoreApplication.translate("MainWindow", u"", None))
 #endif // QT_CONFIG(tooltip)
         self.bn_android.setText("")
         self.lab_home_main_hed.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Aktif Kargolar</p><p><br/></p></body></html>", None))
@@ -1060,17 +1478,21 @@ class Ui_MainWindow(object):
         self.bn_android_game.setToolTip(QCoreApplication.translate("MainWindow", u"GamePad", None))
 #endif // QT_CONFIG(tooltip)
         self.bn_android_game.setText("")
-        self.lab_android_contact.setText(QCoreApplication.translate("MainWindow", u"M\u00fc\u015fteri Kaydetme", None))
-        self.bn_android_contact_delete.setText(QCoreApplication.translate("MainWindow", u"Sil", None))
-        self.bn_android_contact_save.setText(QCoreApplication.translate("MainWindow", u"Y\u00fckle", None))
-        self.line_android_adress.setText("")
+        self.lab_android_contact.setText(QCoreApplication.translate("MainWindow", u"M\u00fc\u015fteri Kaydetme ve Kargo Ekleme", None))
         self.line_android_name.setText("")
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0130sim Soyisim: ", None))
+        self.line_android_adress.setText("")
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Adres: ", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0130sim Soyisim: ", None))
+        self.bn_android_contact_save.setText(QCoreApplication.translate("MainWindow", u"Y\u00fckle", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Kargo g\u00f6ndermek i\u00e7in m\u00fc\u015fteri no giriniz: ", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Y\u00fckle", None))
         self.lab_gamepad.setText(QCoreApplication.translate("MainWindow", u"M\u00fc\u015fteri Ge\u00e7mi\u015fi Sorgulama", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"M\u00fc\u015fteri ID : ", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Ara", None))
         self.lab_tab.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.frame_drag.setToolTip(QCoreApplication.translate("MainWindow", u"Drag", None))
 #endif // QT_CONFIG(tooltip)
     # retranslateUi
+
 
