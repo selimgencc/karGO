@@ -23,7 +23,6 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide6.QtWidgets import *
 
-
 class Ui_Error(object):
     def setupUi(self, Error):
         if not Error.objectName():

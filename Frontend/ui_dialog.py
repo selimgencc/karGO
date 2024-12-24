@@ -100,6 +100,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.bn_close)
 
 
+
         self.verticalLayout_2.addWidget(self.frame_top)
 
         self.frame_bottom = QFrame(self.frame_2)

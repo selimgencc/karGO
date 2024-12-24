@@ -216,6 +216,7 @@ class MainWindow(QMainWindow):
         #self.ui.lab_home_main_disc.setText("-----------")
         #self.ui.lab_home_stat_disc.setText("--------------")
 
+        
 #--PAGE BUG----------------------------------:
     #--CHANGING THE HEADING---------:
         #self.ui.lab_bug.setText("your heading")

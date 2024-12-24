@@ -23,7 +23,6 @@ from Backend.informations import all_shipments,customers_list,Customer
 from datetime import datetime
 from Backend.informations import ShipmentSorter
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():

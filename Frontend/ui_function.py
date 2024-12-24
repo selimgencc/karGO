@@ -29,7 +29,6 @@ class UIFunction(MainWindow):
         self.ui.lab_appname.setText(appName)
     ################################################################################################
 
-
     #----> MAXIMISE/RESTORE FUNCTION
     #THIS FUNCTION MAXIMISES OUR MAINWINDOW WHEN THE MAXIMISE BUTTON IS PRESSED OR IF DOUBLE MOUSE LEFT PRESS IS DOEN OVER THE TOPFRMAE.
     #THIS MAKE THE APPLICATION TO OCCUPY THE WHOLE MONITOR.

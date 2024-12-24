@@ -29,7 +29,6 @@ def find_delivery_time_to_city(node, target_city, current_days=1):
     # Eğer şehir bulunmazsa None döner
     return None
 
-
 # Örnek ağacın oluşturulması
 root = CityNode("İstanbul", 1)
 city1 = CityNode("Kırklareli", 2)

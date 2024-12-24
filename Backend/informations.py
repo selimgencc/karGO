@@ -120,7 +120,6 @@ class Customer:
         self.shipment_history_stack.get_last_shipments()  # Son 5 gönderiyi Stack üzerinden listele
         print(" ") 
 
-
 # Yeni müşteri ekleme
 Customer.addCustomer("Ahmet", "Yılmaz")
 Customer.addCustomer("Ayşe", "Kara")
