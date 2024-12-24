@@ -1229,34 +1229,36 @@ class Ui_MainWindow(object):
                         self.listWidget.addItem(f"Estimated delivery duration: {result.delivery_duration} days")
                 else:
                         self.listWidget.addItem("Kargo bulunamadı!")  # Sonuç yoksa kullanıcıya bilgi ver
+
     def load_button_click_2(self):
-            print("Button clicked")  # Butona tıklandığında log yazdır
+            try:
+                    customer_id = int(self.lineEdit_2.text())  # Müşteri ID'sini integer olarak alıyoruz
+                    current_date = datetime.now().date()  # Yıl, ay, gün bilgisini alıyoruz (sadece tarih)
+                    customer_address = str(self.line_android_adress.text())  # Adresi alıyoruz
 
-            # lineEdit_2'den gelen müşteri ID'sini alıyoruz
-            customer_id = int(self.lineEdit_2.text())  # Müşteri ID'sini integer olarak alıyoruz
-            current_date = datetime.now().date()  # Yıl, ay, gün bilgisini alıyoruz (sadece tarih)
-            customer_adress = str(self.line_android_adress.text())  # Adresi alıyoruz
+                    # customers_list içinde müşteri ID'sini arıyoruz
+                    customer = next((c for c in customers_list if c.customerID == customer_id), None)
 
-            # customers_list içinde müşteri ID'sini arıyoruz
-            # Burada customers_list bir liste ve her bir müşteri bir nesne (örneğin Customer) olmalı
-            customer = next((c for c in customers_list if c.customerID == customer_id), None)
-
-            # Eğer müşteri bulunduysa, addShipment metodunu çağırıyoruz
-            if customer:
-                    Customer.addShipment(customer, current_date, "Not Delivered", customer_adress)
-                   
-            else:
-                    print(f"Müşteri ID'si {customer_id} bulunamadı.")
+                    if customer:
+                            customer.addShipment(current_date, "Not Delivered", customer_address)
+                            print(f"Müşteri {customer_id} için gönderim başarıyla eklendi.")
+                    else:
+                            print(f"Müşteri ID'si {customer_id} bulunamadı.")
+            except ValueError:
+                    print("Hata: Lütfen geçerli bir müşteri ID'si giriniz.")
 
     def load_button_click_1(self):
-            print("Button clicked")  # Butona tıklandığında log yazdır
-            full_name = str(self.line_android_name.text())
-            name_parts = full_name.split(maxsplit=1)
+            try:
+                    print("Button clicked")  # Butona tıklandığında log yazdır
+                    full_name = str(self.line_android_name.text())
+                    name_parts = full_name.split(maxsplit=1)
 
-            customer_name = name_parts[0]
-            customer_surname = name_parts[1] if len(name_parts) > 1 else ""
+                    customer_name = name_parts[0]
+                    customer_surname = name_parts[1] if len(name_parts) > 1 else ""
 
-            Customer.addCustomer(customer_name, customer_surname)
+                    Customer.addCustomer(customer_name, customer_surname)
+            except Exception as e:
+                    print(f"An error occurred: {e}")
 
     def handle_button_click(self):
             try:

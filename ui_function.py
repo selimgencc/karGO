@@ -288,13 +288,13 @@ class APFunction():
 
 #-----> FUNCTION TO SAVE THE MODOFOED TEXT FIELD
     def saveContact(self):
-        self.ui.line_android_name.setEnabled(False)
-        self.ui.line_android_adress.setEnabled(False)
+        self.ui.line_android_name.setEnabled(True)
+        self.ui.line_android_adress.setEnabled(True)
         self.ui.line_android_org.setEnabled(False)
         self.ui.line_android_email.setEnabled(False)
         self.ui.line_android_ph.setEnabled(False)
 
-        self.ui.bn_android_contact_save.setEnabled(False)
+        self.ui.bn_android_contact_save.setEnabled(True)
         self.ui.bn_android_contact_edit.setEnabled(True)
         self.ui.bn_android_contact_share.setEnabled(True)
 ###############################################################################################################################################################
