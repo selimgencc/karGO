@@ -909,6 +909,19 @@ class Ui_MainWindow(object):
         self.lineEdit_2 = QLineEdit(self.frame_android_field)#müşteri id
         self.lineEdit_2.setObjectName(u"lineEdit_2")
         self.lineEdit_2.setMaximumSize(QSize(400, 25))
+        self.lineEdit_2.setStyleSheet(u"QLineEdit {\n"
+                                               "	color:rgb(255,255,255);\n"
+                                               "	border:2px solid rgb(51,51,51);\n"
+                                               "	border-radius:4px;\n"
+                                               "	background:rgb(51,51,51);\n"
+                                               "}\n"
+                                               "\n"
+                                               "QLineEdit:disabled {\n"
+                                               "	color:rgb(255,255,255);\n"
+                                               "	border:2px solid rgb(112,112,112);\n"
+                                               "	border-radius:4px;\n"
+                                               "	background:rgb(112,112,112);\n"
+                                               "}")
         palette4 = QPalette()
         brush3 = QBrush(QColor(255, 255, 255, 255))
         brush3.setStyle(Qt.SolidPattern)
@@ -996,6 +1009,28 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.frame_android_field)
         self.pushButton.setObjectName(u"pushButton")#kargo yükleme butonu
         self.pushButton.setMaximumSize(QSize(250, 25))
+
+        self.pushButton.setStyleSheet("""
+            QPushButton {
+                border: 2px solid rgb(51, 51, 51);
+                border-radius: 5px;
+                color: rgb(255, 255, 255);
+                background-color: rgb(51, 51, 51);
+            }
+            QPushButton:hover {
+                border: 2px solid rgb(0, 143, 150);
+                background-color: rgb(0, 143, 150);
+            }
+            QPushButton:pressed {
+                border: 2px solid rgb(0, 143, 150);
+                background-color: rgb(90, 90, 90);
+            }
+            QPushButton:disabled {
+                border-radius: 5px;
+                border: 2px solid rgb(112, 112, 112);
+                background-color: rgb(112, 112, 112);
+            }
+        """)
 
         palette5 = QPalette()
         palette5.setBrush(QPalette.Active, QPalette.WindowText, brush)
