@@ -1205,20 +1205,30 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
     def load_button_click_3(self):
-        shipment_id = int(self.line_cloud_id.text())
-        ShipmentSorter.sort_shipments_by_id()
-        result = ShipmentSorter.binary_search_by_id(shipment_id)
-        
-        self.listWidget.clear()
-        
-        if result:
-                self.listWidget.addItem(f"Cargo ID: {result.shipment_id}")
-                self.listWidget.addItem(f"Shipment date: {result.shipment_date}")
-                self.listWidget.addItem(f"Target city: {result.target_city}")
-                self.listWidget.addItem(f"Delivery status: {result.delivery_status}")
-                self.listWidget.addItem(f"Estimated delivery duration: {result.delivery_duration} days")
+        try:
+                # Kullanıcı girişini sayıya dönüştürmeyi dene
+                shipment_id = int(self.line_cloud_id.text())
+        except ValueError:
+                # Eğer boş veya geçersiz bir giriş varsa
+                shipment_id = None
+
+        if shipment_id is None:
+                # shipment_id boşsa, tüm gönderileri listele
+                self.listAllShipmentsUI()
         else:
-                self.listWidget.addItem("Kargo bulunamadı!")  # Sonuç yoksa kullanıcıya bilgi ver
+                # shipment_id geçerliyse, işlem yap
+                ShipmentSorter.sort_shipments_by_id()
+                result = ShipmentSorter.binary_search_by_id(shipment_id)
+
+                self.listWidget.clear()
+                if result:
+                        self.listWidget.addItem(f"Cargo ID: {result.shipment_id}")
+                        self.listWidget.addItem(f"Shipment date: {result.shipment_date}")
+                        self.listWidget.addItem(f"Target city: {result.target_city}")
+                        self.listWidget.addItem(f"Delivery status: {result.delivery_status}")
+                        self.listWidget.addItem(f"Estimated delivery duration: {result.delivery_duration} days")
+                else:
+                        self.listWidget.addItem("Kargo bulunamadı!")  # Sonuç yoksa kullanıcıya bilgi ver
     def load_button_click_2(self):
             print("Button clicked")  # Butona tıklandığında log yazdır
 
