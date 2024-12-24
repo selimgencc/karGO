@@ -4,7 +4,7 @@ Bu proje, kullanıcı dostu bir kargo takip paneli oluşturmayı amaçlamaktadı
 
 ## Özellikler
 
-- **Müşteri Yönetimi**: Müşteri bilgileri ve gönderim geçmişi linked list yapısı ile yönetilir.
+- **Müşteri Yönetimi**: Kargo bilgileri ve gönderim geçmişi linked list yapısı ile yönetilir.
 - **Kargo Önceliklendirme**: Priority queue algoritması ile teslimat sürelerine göre önceliklendirme yapılır.
 - **Kargo Rotalama**: Tree veri yapısı kullanılarak optimal rotalar oluşturulur.
 - **Gönderim Geçmişi Sorgulama**: Stack veri yapısı ile son gönderim geçmişine hızlı erişim sağlanır.
