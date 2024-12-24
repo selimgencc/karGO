@@ -6,8 +6,8 @@ import random
 # SMTP ayarları (Gmail örneği)
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-EMAIL_ADDRESS = "graphplotter.mnm@gmail.com"  # Gönderici e-posta adresi
-EMAIL_PASSWORD = "yfyj hxyz aoap myvo"  # Uygulama şifresi
+EMAIL_ADDRESS = ""  # Gönderici e-posta adresi
+EMAIL_PASSWORD = ""  # Uygulama şifresi
 
 def generate_random_six_digit_number():
     """Rastgele 6 haneli bir sayı üretir ve string olarak döner."""
@@ -16,7 +16,7 @@ def generate_random_six_digit_number():
 def send_email():
     try:
         # Sabit değerler
-        recipient = "mirzasincap@gmail.com"
+        recipient = "Recipient Email Address" 
         subject = "karGO"
         body = f"Sayın müşterimiz siparişiniz kargoya verilmiştir. Doğrulama kodunuz: {generate_random_six_digit_number()}"
 
