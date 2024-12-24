@@ -19,7 +19,7 @@ class UIFunction(MainWindow):
         global init
         if init==False:
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-            self.ui.lab_tab.setText("Home")
+            self.ui.lab_tab.setText("")
             self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             init = True
     ################################################################################################
@@ -82,13 +82,13 @@ class UIFunction(MainWindow):
                 extend = maxWidth
                 #----> MAKE THE STACKED WIDGET PAGE TO ABOUT HOME PAGE
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
-                self.ui.lab_tab.setText("About > Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             else:
                 extend = minWidth
                 #-----> REVERT THE ABOUT HOME PAGE TO NORMAL HOME PAGE
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-                self.ui.lab_tab.setText("Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             #THIS ANIMATION IS RESPONSIBLE FOR THE TOODLE TO MOVE IN A SOME FIXED STATE.
             self.animation = QPropertyAnimation(self.ui.frame_bottom_west, b"minimumWidth")
@@ -147,39 +147,39 @@ class UIFunction(MainWindow):
         if buttonName=='bn_home':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-                self.ui.lab_tab.setText("Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST 
 
                 self.ui.listCustomersUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=1:  # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_home)
-                self.ui.lab_tab.setText("About > Home")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
         elif buttonName=='bn_android':
             if self.ui.frame_bottom_west.width()==80  and index!=7:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_android)
-                self.ui.lab_tab.setText("Android")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
                 UIFunction.androidStackPages(self, "page_contact")
                 self.ui.listAllShipmentsUI()
 
             elif self.ui.frame_bottom_west.width()==160  and index!=3:   # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_android)
-                self.ui.lab_tab.setText("About > Android")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
                 self.ui.listAllShipmentsUI()
 
         elif buttonName=='bn_cloud':
             if self.ui.frame_bottom_west.width()==80 and index!=6:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_cloud)
-                self.ui.lab_tab.setText("Cloud")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
             elif self.ui.frame_bottom_west.width()==160 and index!=2:   # ABOUT PAGE STACKED WIDGET
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_about_cloud)
-                self.ui.lab_tab.setText("About > Cloud")
+                self.ui.lab_tab.setText("")
                 self.ui.frame_cloud.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
         #ADD ANOTHER ELIF STATEMENT HERE FOR EXECTUITING A NEW MENU BUTTON STACK PAGE.
@@ -192,8 +192,8 @@ class UIFunction(MainWindow):
     def stackPage(self):
 
         ######### PAGE_HOME ############# BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_HOME
-        self.ui.lab_home_main_hed.setText("Profile")
-        self.ui.lab_home_stat_hed.setText("Last Shipments")
+        self.ui.lab_home_main_hed.setText("Müşteriler")
+        self.ui.lab_home_stat_hed.setText("Son Siparişler")
 
 
         # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
@@ -226,12 +226,12 @@ class UIFunction(MainWindow):
 
         if page == "page_contact":
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_contact)
-            self.ui.lab_tab.setText("Android > Contact")
+            self.ui.lab_tab.setText("")
             self.ui.frame_android_contact.setStyleSheet("background:rgb(91,90,90)")
 
         elif page == "page_game":
             self.ui.stackedWidget_android.setCurrentWidget(self.ui.page_android_game)
-            self.ui.lab_tab.setText("Android > GamePad")
+            self.ui.lab_tab.setText("")
             self.ui.frame_android_game.setStyleSheet("background:rgb(91,90,90)")
 
 
