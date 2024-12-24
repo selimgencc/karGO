@@ -1,6 +1,5 @@
 from main import * #IMPORTING THE MAIN.PY FILE
 
-from about import *
 from Frontend.ui_main import Ui_MainWindow
 
 GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT

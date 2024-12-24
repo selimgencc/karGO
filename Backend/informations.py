@@ -96,6 +96,7 @@ class Customer:
                 print(f"ID={customer.customerID}, Name={customer.name}, Surname={customer.surname}")
 
     def addShipment(self, shipment_date, delivery_status, target_city):
+        
         # 4 haneli rastgele bir shipment_id oluştur
         shipment_id = random.randint(1000, 9999)
         shipment = Shipment(shipment_id, shipment_date, delivery_status, target_city)
@@ -112,12 +113,12 @@ class Customer:
     def listAllShipments(self):
         print(f"All shipments for {self.name} {self.surname}:")
         self.shipment_history_list.display()  # Tüm gönderileri Linked List üzerinden listele
-        print(" ") # Bir satır boşluk bırak
+        print(" ") 
 
     def listLastShipments(self):
         print(f"Last shipments for {self.name} {self.surname}:")
         self.shipment_history_stack.get_last_shipments()  # Son 5 gönderiyi Stack üzerinden listele
-        print(" ") # Bir satır boşluk bırak
+        print(" ") 
 
 
 # Yeni müşteri ekleme
@@ -157,7 +158,6 @@ Customer.addCustomer("Ece", "Erdoğan")
 Customer.addCustomer("Pelin", "Yalçın")
 Customer.addCustomer("Cem", "Erol")
 
-# Gönderi ekleme
 customer1 = customers_list[0]
 customer1.addShipment("2024-12-10", "Not Delivered", "Eskişehir")
 customer1.addShipment("2024-12-12", "Not Delivered", "Afyonkarahisar")
@@ -252,6 +252,3 @@ class ShipmentSorter:
                 high = mid - 1
 
         return None  # Kargo bulunamadı
-
-# Örnek Kullanım
-ShipmentSorter.sort_shipments_by_id()
